@@ -1,0 +1,2 @@
+uploadcare-ckeditor
+===================
