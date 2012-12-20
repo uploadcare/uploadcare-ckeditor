@@ -24,6 +24,10 @@ Find a "config.php" file inside plugin directory and edit it:
     define('UC_PUBLIC_KEY', 'demopublickey');
     define('UC_SECRET_KEY', 'demoprivatekey');
 
+Find a "config.js" file an edit it:
+
+    var UPLOADCARE_PUBLIC_KEY = "demopublickey";
+
 Initialize a CKEDITOR plugin with additional params:
 
     &lt;script&gt;
