@@ -30,7 +30,7 @@ Find a "config.js" file an edit it:
 
 Initialize a CKEDITOR plugin with additional params:
 
-    &lt;script&gt;
+    <script>
       CKEDITOR.replace( 'editor1', {
         extraPlugins: 'uploadcare', // this will enable plugin
         toolbar: [
@@ -38,7 +38,7 @@ Initialize a CKEDITOR plugin with additional params:
         ]
       });
 
-    &lt;/script&gt;
+    </script>
 
 ## Usage
 
