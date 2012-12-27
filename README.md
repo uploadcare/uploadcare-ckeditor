@@ -9,6 +9,7 @@ It's based on a [uploadcare-php][3] library.
 - CKEDITOR 4.0+
 - PHP 5.2+
 - [iframedialog][5] plugin for CKEDITOR
+- php-curl
 
 ## Install
 
