@@ -45,7 +45,7 @@ Initialize a CKEDITOR plugin with additional params:
 
 1. Press "Uploadcare" button.
 2. Select a file to upload.
-3. Press "Store".
+3. Wait for file to be uploaded. An "Uploadcare" icon will show upload progress.
 4. Change any parameters you like.
 5. Press "Insert" and an image will be available inside editor.
  
