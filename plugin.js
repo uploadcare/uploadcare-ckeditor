@@ -4,7 +4,7 @@ CKEDITOR.plugins.add('uploadcare', {
         var me = this;
         var _file_id;
 
-        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.6.3/uploadcare/uploadcare-0.6.3.min.js');
+        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.5.0/uploadcare/uploadcare-0.5.0.min.js');
         CKEDITOR.scriptLoader.load('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
         CKEDITOR.scriptLoader.load(me.path + 'config.js');
 
