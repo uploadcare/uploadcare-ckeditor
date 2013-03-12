@@ -5,12 +5,17 @@ CKEDITOR.plugins.add('uploadcare', {
         var _file_id;
 
         CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.5.0/uploadcare/uploadcare-0.5.0.min.js');
-        CKEDITOR.scriptLoader.load('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+        if (typeof jQuery == 'undefined') {
+            if (typeof $ == 'function') {
+                $.noConflict()
+            }
+            CKEDITOR.scriptLoader.load('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+        }
         CKEDITOR.scriptLoader.load(me.path + 'config.js');
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
 
-        editor.addCommand('showUploadcareDialog', {exec: function() {   
+        editor.addCommand('showUploadcareDialog', {exec: function() {
             jQuery('.cke_button__uploadcare_icon').html('');
             var uploader = new uploadcare.uploader.Uploader();
             var circle = new uploadcare.ui.progress.Circle('.cke_button__uploadcare_icon');
@@ -23,14 +28,14 @@ CKEDITOR.plugins.add('uploadcare', {
                 _file_id = file.fileId;
                 editor.execCommand('uploadcareDialog', true);
             });
-        }});         
-        
+        }});
+
         editor.ui.addButton('Uploadcare', {
             label : 'Uploadcare',
             toolbar : 'insert',
             command : 'showUploadcareDialog',
             icon : this.path + 'images/logo.png'
-        });       
+        });
 
         CKEDITOR.dialog.add('uploadcareDialog', function() {
             return {
