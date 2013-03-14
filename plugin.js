@@ -9,7 +9,7 @@ CKEDITOR.plugins.add('uploadcare', {
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
 
-        editor.addCommand('showUploadcareDialog', {exec: function() {   
+        editor.addCommand('showUploadcareDialog', {exec: function() {
             var uploader = new uploadcare.uploader.Uploader();
             var circle = new uploadcare.ui.progress.Circle('.cke_button__uploadcare_icon');
             uploadcare.widget.showDialog().pipe(function(file) {
@@ -21,14 +21,14 @@ CKEDITOR.plugins.add('uploadcare', {
                 _file_id = file.fileId;
                 editor.execCommand('uploadcareDialog', true);
             });
-        }});         
-        
+        }});
+
         editor.ui.addButton('Uploadcare', {
             label : 'Uploadcare',
             toolbar : 'insert',
             command : 'showUploadcareDialog',
             icon : this.path + 'images/logo.png'
-        });       
+        });
 
         CKEDITOR.dialog.add('uploadcareDialog', function() {
             return {
