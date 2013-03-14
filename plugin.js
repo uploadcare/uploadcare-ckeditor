@@ -4,7 +4,7 @@ CKEDITOR.plugins.add('uploadcare', {
         var me = this;
         var _file_id;
 
-        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.6.7/uploadcare/uploadcare-0.6.7.min.js');
+        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.6.7.1/uploadcare/uploadcare-0.6.7.1.min.js');
         CKEDITOR.scriptLoader.load(me.path + 'config.js');
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
