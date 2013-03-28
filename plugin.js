@@ -4,7 +4,7 @@ CKEDITOR.plugins.add('uploadcare', {
         var me = this;
         var _file_id;
 
-        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.6.7.1/uploadcare/uploadcare-0.6.7.1.min.js');
+        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.6.8/uploadcare/uploadcare-0.6.8.min.js');
         CKEDITOR.scriptLoader.load(me.path + 'config.js');
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
@@ -12,10 +12,9 @@ CKEDITOR.plugins.add('uploadcare', {
         editor.addCommand('showUploadcareDialog', {exec: function() {
             var circle = new uploadcare.Circle('.cke_button__uploadcare_icon');
             var dialog = uploadcare.openDialog().done(function(file) {
-                file.startUpload();
-                circle.listen(file.upload);
-                file.upload.done(function() {
-                    _file_id = file.fileId;
+                circle.listen(file);
+                file.done(function(fileInfo) {
+                    _file_id = fileInfo.uuid;
                     editor.execCommand('uploadcareDialog', true);
                 });
             });
