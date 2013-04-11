@@ -7,9 +7,14 @@ It's based on a [uploadcare-php][3] library.
 ## Requirements
 
 - CKEDITOR 4.0+
-- PHP 5.2+
+
+## Optional for PHP version.
+
 - [iframedialog][5] plugin for CKEDITOR
+- PHP 5.2+
 - php-curl
+
+**Note!** PHP implementation is optional by now and we higly recommend not to use it.
 
 ## Install
 
@@ -18,12 +23,6 @@ Install iframedialog plugin.
 Clone plugin from git to your plugins directory:
 
     git clone git://github.com/uploadcare/uploadcare-ckeditor.git plugins/uploadcare --recursive
-
-Find a "config.php" file inside plugin directory and edit it:
-
-    <?php
-    define('UC_PUBLIC_KEY', 'demopublickey');
-    define('UC_SECRET_KEY', 'demoprivatekey');
 
 Find a "config.js" file an edit it:
 
@@ -41,7 +40,32 @@ Initialize a CKEDITOR plugin with additional params:
 
     </script>
 
+## PHP (Optional)
+
+Find a "config.js" file and edit it:
+  
+    var USE_PHP = true;
+
+Find a "config.php" file inside plugin directory and edit it:
+
+    <?php
+    define('UC_PUBLIC_KEY', 'demopublickey');
+    define('UC_SECRET_KEY', 'demoprivatekey');
+
+PHP Version provides an outdated custom dialog. This dialog is used to store files and images and 
+provides some additional image operations.
+
 ## Usage
+
+### if USE_PHP = false
+
+1. Press "Uploadcare" button.
+2. Select a file to upload and press "Upload"
+3. Wait for file to be uploaded.
+4. Crop an image as you wish.
+5. Press "Upload" again. A cropped image will be available inside editor.
+
+### If USE_PHP = true
 
 1. Press "Uploadcare" button.
 2. Select a file to upload.
