@@ -25,7 +25,7 @@ CKEDITOR.plugins.add('uploadcare', {
                         if (USE_PHP) {
                             editor.execCommand('uploadcareDialog', true);
                         } else {
-                            CKEDITOR.instances[editor.name].insertHtml('<img src="'+url+'" />');
+                            editor.insertHtml('<img src="'+url+'" />', 'unfiltered_html');
                         }
                     });
                 });
