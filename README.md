@@ -18,7 +18,8 @@ It's based on a [uploadcare-php][3] library.
 
 ## Install
 
-Install iframedialog plugin.
+**Warning**: You **must** enable "Automatic file storing" in your account settings.
+Please follow https://uploadcare.com/accounts/settings/ to enable feature.
 
 Clone plugin from git to your plugins directory:
 
@@ -41,6 +42,8 @@ Initialize a CKEDITOR plugin with additional params:
     </script>
 
 ## PHP (Optional)
+
+Install iframedialog plugin.
 
 Find a "config.js" file and edit it:
   
