@@ -1,7 +1,6 @@
 UPLOADCARE_CROP = true;
 
 CKEDITOR.plugins.add('uploadcare', {
-    requires : [ 'iframedialog' ],
     init : function(editor) {
         var me = this;
         var _file_id;
