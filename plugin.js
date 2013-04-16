@@ -17,7 +17,7 @@ CKEDITOR.plugins.add('uploadcare', {
             exec : function() {
                 //var circle = new uploadcare.Circle('.cke_button__uploadcare_icon');
                 var dialog = uploadcare.openDialog().done(function(file) {
-                    circle.listen(file);
+                    //circle.listen(file);
                     file.done(function(fileInfo) {
                         _file_id = fileInfo.uuid;
                         dialog_path = me.path + 'dialog.php?file_id=' + _file_id;
@@ -25,6 +25,7 @@ CKEDITOR.plugins.add('uploadcare', {
                         if (USE_PHP) {
                             editor.execCommand('uploadcareDialog', true);
                         } else {
+                            console.log(url);
                             editor.insertHtml('<img src="'+url+'" />', 'unfiltered_html');
                         }
                     });
