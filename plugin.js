@@ -5,10 +5,10 @@ CKEDITOR.plugins.add('uploadcare', {
         var me = this;
         var _file_id;
 
-        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.7/uploadcare/uploadcare-0.7.min.js');
         CKEDITOR.scriptLoader.load(me.path + 'config.js', function() {
             UPLOADCARE_CROP = !USE_PHP;
             UPLOADCARE_AUTOSTORE = !USE_PHP;
+            CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.7.0.1/uploadcare/uploadcare-0.7.0.1.min.js');
         });
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
