@@ -15,7 +15,7 @@ CKEDITOR.plugins.add('uploadcare', {
 
         editor.addCommand('showUploadcareDialog', {
             exec : function() {
-                var circle = new uploadcare.Circle('.cke_button__uploadcare_icon');
+                //var circle = new uploadcare.Circle('.cke_button__uploadcare_icon');
                 var dialog = uploadcare.openDialog().done(function(file) {
                     circle.listen(file);
                     file.done(function(fileInfo) {
