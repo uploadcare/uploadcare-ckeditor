@@ -8,16 +8,14 @@ CKEDITOR.plugins.add('uploadcare', {
         CKEDITOR.scriptLoader.load(me.path + 'config.js', function() {
             UPLOADCARE_CROP = !USE_PHP;
             UPLOADCARE_AUTOSTORE = !USE_PHP;
-            CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.8/uploadcare/uploadcare-0.8.min.js');
+            CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.8.1/uploadcare/uploadcare-0.8.1.min.js');
         });
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
 
         editor.addCommand('showUploadcareDialog', {
             exec : function() {
-                //var circle = new uploadcare.Circle('.cke_button__uploadcare_icon');
                 var dialog = uploadcare.openDialog().done(function(file) {
-                    //circle.listen(file);
                     file.done(function(fileInfo) {
                         _file_id = fileInfo.uuid;
                         dialog_path = me.path + 'dialog.php?file_id=' + _file_id;
@@ -25,8 +23,11 @@ CKEDITOR.plugins.add('uploadcare', {
                         if (USE_PHP) {
                             editor.execCommand('uploadcareDialog', true);
                         } else {
-                            console.log(url);
-                            editor.insertHtml('<img src="'+url+'" />', 'unfiltered_html');
+                            if (fileInfo.isImage) {
+                                editor.insertHtml('<img src="'+url+'" />', 'unfiltered_html');
+                            } else {
+                                editor.insertHtml('<a href="'+url+'">'+fileInfo.name+'</a>', 'unfiltered_html');
+                            }
                         }
                     });
                 });
