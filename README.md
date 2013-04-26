@@ -25,13 +25,11 @@ Clone plugin from git to your plugins directory:
 
     git clone git://github.com/uploadcare/uploadcare-ckeditor.git plugins/uploadcare --recursive
 
-Find a "config.js" file an edit it:
-
-    var UPLOADCARE_PUBLIC_KEY = "demopublickey";
-
 Initialize a CKEDITOR plugin with additional params:
 
     <script>
+      UPLOADCARE_PUBLIC_KEY = "demopublickey"; //set publick key for Uploadcare
+      UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
       CKEDITOR.replace( 'editor1', {
         extraPlugins: 'uploadcare', // this will enable plugin
         toolbar: [
@@ -45,15 +43,26 @@ Initialize a CKEDITOR plugin with additional params:
 
 Install iframedialog plugin.
 
-Find a "config.js" file and edit it:
-  
-    var USE_PHP = true;
-
 Find a "config.php" file inside plugin directory and edit it:
 
     <?php
     define('UC_PUBLIC_KEY', 'demopublickey');
     define('UC_SECRET_KEY', 'demoprivatekey');
+
+Initialize a CKEDITOR plugin:
+
+    <script>
+      UPLOADCARE_PUBLIC_KEY = "demopublickey"; //set publick key for Uploadcare
+      UPLOADCARE_LOCALE = 'ru'; //set locale if you wish
+      CKEDITOR.replace( 'editor1', {
+        extraPlugins: 'uploadcare,iframedialog', // this will enable plugin. Iframedialog must be enabled in this case!
+        USE_PHP: true, //this will enable outdated PHP dialog
+        toolbar: [
+          [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', '-', 'Uploadcare' ]
+        ]
+      });
+
+    </script>
 
 PHP Version provides an outdated custom dialog. This dialog is used to store files and images and 
 provides some additional image operations.

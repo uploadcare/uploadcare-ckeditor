@@ -5,11 +5,9 @@ CKEDITOR.plugins.add('uploadcare', {
         var me = this;
         var _file_id;
 
-        CKEDITOR.scriptLoader.load(me.path + 'config.js', function() {
-            UPLOADCARE_CROP = !USE_PHP;
-            UPLOADCARE_AUTOSTORE = !USE_PHP;
-            CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.8.1/uploadcare/uploadcare-0.8.1.min.js');
-        });
+        UPLOADCARE_CROP = !editor.config.USE_PHP;
+        UPLOADCARE_AUTOSTORE = !editor.config.USE_PHP;
+        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.8.1/uploadcare/uploadcare-0.8.1.min.js');        
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
 
@@ -20,7 +18,7 @@ CKEDITOR.plugins.add('uploadcare', {
                         _file_id = fileInfo.uuid;
                         dialog_path = me.path + 'dialog.php?file_id=' + _file_id;
                         url = fileInfo.cdnUrl;
-                        if (USE_PHP) {
+                        if (editor.config.USE_PHP) {
                             editor.execCommand('uploadcareDialog', true);
                         } else {
                             if (fileInfo.isImage) {
