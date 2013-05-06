@@ -12,6 +12,8 @@ CKEDITOR.plugins.add('uploadcare', {
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
 
         editor.addCommand('showUploadcareDialog', {
+		    allowedContent: 'img',
+			requiredContent: 'img',
             exec : function() {
                 var dialog = uploadcare.openDialog().done(function(file) {
                     file.done(function(fileInfo) {
@@ -36,7 +38,9 @@ CKEDITOR.plugins.add('uploadcare', {
             label : 'Uploadcare',
             toolbar : 'insert',
             command : 'showUploadcareDialog',
-            icon : this.path + 'images/logo.png'
+            icon : this.path + 'images/logo.png',
+		    allowedContent: 'img[alt,dir,id,lang,longdesc,!src,title]{*}(*)',
+			requiredContent: 'img[alt,src]'			
         });
 
         CKEDITOR.dialog.add('uploadcareDialog', function() {
