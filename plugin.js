@@ -7,13 +7,13 @@ CKEDITOR.plugins.add('uploadcare', {
 
         UPLOADCARE_CROP = !editor.config.USE_PHP;
         UPLOADCARE_AUTOSTORE = !editor.config.USE_PHP;
-        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.11.2/uploadcare/uploadcare-0.11.2.min.js');        
+        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.13.3/uploadcare/uploadcare-0.13.3.min.js');
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
 
         editor.addCommand('showUploadcareDialog', {
-		    allowedContent: 'img',
-			requiredContent: 'img',
+            allowedContent: 'img',
+            requiredContent: 'img',
             exec : function() {
                 var dialog = uploadcare.openDialog().done(function(file) {
                     file.done(function(fileInfo) {
@@ -39,8 +39,8 @@ CKEDITOR.plugins.add('uploadcare', {
             toolbar : 'insert',
             command : 'showUploadcareDialog',
             icon : this.path + 'images/logo.png',
-		    allowedContent: 'img[alt,dir,id,lang,longdesc,!src,title]{*}(*)',
-			requiredContent: 'img[alt,src]'			
+            allowedContent: 'img[alt,dir,id,lang,longdesc,!src,title]{*}(*)',
+            requiredContent: 'img[alt,src]'
         });
 
         CKEDITOR.dialog.add('uploadcareDialog', function() {
@@ -51,11 +51,11 @@ CKEDITOR.plugins.add('uploadcare', {
                 onShow : function() {
                     document.getElementById(this.getButton('ok').domId).style.display = 'none';
                 },
-                contents : [ {
+                contents : [{
                     id : 'iframe',
                     label : 'Uploadcare',
                     expand : false,
-                    elements : [ {
+                    elements : [{
                         type : 'iframe',
                         src : me.path + 'dialog.php?file_id=' + _file_id,
                         width : '800',
@@ -66,8 +66,8 @@ CKEDITOR.plugins.add('uploadcare', {
                                 iframeWindow.document.getElementById('editor_name').value = editor.name;
                             }
                         }
-                    } ]
-                } ]
+                    }]
+                }]
             };
         });
     }
