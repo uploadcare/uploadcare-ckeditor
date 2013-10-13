@@ -1,11 +1,15 @@
-UPLOADCARE_CROP = true;
-
 CKEDITOR.plugins.add('uploadcare', {
     init : function(editor) {
         var me = this;
         var _file_id;
 
-        UPLOADCARE_CROP = !editor.config.USE_PHP;
+        // Check for custom crop
+        if (!!editor.config.USE_PHP) {
+            UPLOADCARE_CROP = false;
+        } else if (typeof UPLOADCARE_CROP === 'undefined') {
+            UPLOADCARE_CROP = true;
+        }
+
         UPLOADCARE_AUTOSTORE = !editor.config.USE_PHP;
         CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.13.3/uploadcare/uploadcare-0.13.3.min.js');
 
