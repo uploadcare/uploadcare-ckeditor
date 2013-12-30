@@ -11,7 +11,7 @@ CKEDITOR.plugins.add('uploadcare', {
         }
 
         UPLOADCARE_AUTOSTORE = !editor.config.USE_PHP;
-        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.13.3/uploadcare/uploadcare-0.13.3.min.js');
+        CKEDITOR.scriptLoader.load('https://ucarecdn.com/widget/0.17.0/uploadcare/uploadcare-0.17.0.min.js');
 
         editor.addCommand('uploadcareDialog', new CKEDITOR.dialogCommand('uploadcareDialog'));
 
