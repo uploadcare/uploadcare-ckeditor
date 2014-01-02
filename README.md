@@ -12,7 +12,7 @@ CKEditor 4.0+
 
 ## Install
 
-Add [plugin][http://ckeditor.com/addon/uploadcare] to CKBuilder or
+Add [plugin](http://ckeditor.com/addon/uploadcare) to CKBuilder or
 clone plugin from git to your plugins directory:
 
     git clone git://github.com/uploadcare/uploadcare-ckeditor.git plugins/uploadcare
