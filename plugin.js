@@ -4,7 +4,7 @@
 CKEDITOR.plugins.add('uploadcare', {
     init : function(editor) {
         var me = this;
-        var widget_version = '0.17.0';
+        var widget_version = '0.17.2';
         var widget_url = 'https://ucarecdn.com/widget/' + widget_version +
                          '/uploadcare/uploadcare-' + widget_version + '.min.js'
 
