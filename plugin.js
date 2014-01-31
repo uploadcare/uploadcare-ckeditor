@@ -10,7 +10,7 @@ CKEDITOR.plugins.add('uploadcare', {
 
         // Check for custom crop
         if (typeof UPLOADCARE_CROP === 'undefined') {
-            UPLOADCARE_CROP = true;
+            UPLOADCARE_CROP = "";
         }
 
         UPLOADCARE_AUTOSTORE = true;
