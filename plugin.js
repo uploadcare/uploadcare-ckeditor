@@ -5,10 +5,10 @@ CKEDITOR.plugins.add('uploadcare', {
     hidpi: true,
     icons: 'uploadcare',
     init : function(editor) {
-        var me = this;
-        var widget_version = '1.0.0';
-        var widget_url = 'https://ucarecdn.com/widget/' + widget_version +
-                         '/uploadcare/uploadcare-' + widget_version + '.min.js'
+        var config = editor.config.uploadcare || {};
+        var version = config.widgetVersion || '1.2.0';
+        var widget_url = 'https://ucarecdn.com/widget/' + version +
+                         '/uploadcare/uploadcare-' + version + '.min.js'
 
         // Check for custom crop
         if (typeof UPLOADCARE_CROP === 'undefined') {
