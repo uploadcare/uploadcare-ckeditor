@@ -2,6 +2,8 @@
 // Version: 1.3.0
 
 CKEDITOR.plugins.add('uploadcare', {
+    hidpi: true,
+    icons: 'uploadcare',
     init : function(editor) {
         var me = this;
         var widget_version = '1.0.0';
@@ -37,7 +39,6 @@ CKEDITOR.plugins.add('uploadcare', {
             label : 'Uploadcare',
             toolbar : 'insert',
             command : 'showUploadcareDialog',
-            icon : this.path + 'images/logo.png',
             allowedContent: 'img[alt,dir,id,lang,longdesc,!src,title]{*}(*)',
             requiredContent: 'img[alt,src]'
         });
