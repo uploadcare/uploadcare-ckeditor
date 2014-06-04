@@ -35,7 +35,7 @@ CKEDITOR.plugins.add('uploadcare', {
       }
     });
 
-    editor.ui.addButton('Uploadcare', {
+    editor.ui.addButton && editor.ui.addButton('Uploadcare', {
       label : 'Uploadcare',
       toolbar : 'insert',
       command : 'showUploadcareDialog',
