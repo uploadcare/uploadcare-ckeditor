@@ -6,7 +6,7 @@ CKEDITOR.plugins.add('uploadcare', {
   icons: 'uploadcare',
   init : function(editor) {
     var config = editor.config.uploadcare || {};
-    var version = config.widgetVersion || '1.2.0';
+    var version = config.widgetVersion || '1.2.2';
     var widget_url = 'https://ucarecdn.com/widget/' + version +
              '/uploadcare/uploadcare-' + version + '.min.js'
 
@@ -19,7 +19,7 @@ CKEDITOR.plugins.add('uploadcare', {
     CKEDITOR.scriptLoader.load(widget_url);
 
     editor.addCommand('showUploadcareDialog', {
-      allowedContent: 'img',
+      allowedContent: 'img[src,alt]{width,height}',
       requiredContent: 'img',
       exec : function() {
         var dialog = uploadcare.openDialog().done(function(file) {
@@ -38,9 +38,7 @@ CKEDITOR.plugins.add('uploadcare', {
     editor.ui.addButton && editor.ui.addButton('Uploadcare', {
       label : 'Uploadcare',
       toolbar : 'insert',
-      command : 'showUploadcareDialog',
-      allowedContent: 'img[alt,dir,id,lang,longdesc,!src,title]{*}(*)',
-      requiredContent: 'img[alt,src]'
+      command : 'showUploadcareDialog'
     });
   }
 });
