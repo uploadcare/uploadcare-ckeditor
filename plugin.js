@@ -9,14 +9,16 @@ CKEDITOR.plugins.add('uploadcare', {
     var version = config.widgetVersion || '1.2.2';
     var widget_url = 'https://ucarecdn.com/widget/' + version +
              '/uploadcare/uploadcare-' + version + '.min.js'
-
-    // Check for custom crop
-    if (typeof UPLOADCARE_CROP === 'undefined') {
-      UPLOADCARE_CROP = "";
-    }
-
-    UPLOADCARE_AUTOSTORE = true;
     CKEDITOR.scriptLoader.load(widget_url);
+
+
+    // Apply default properties.
+    if ( ! 'crop' in config) {
+      config.crop = '';
+    }
+    if ( ! 'autostore' in config) {
+      config.autostore = true;
+    }
 
     function searchSelectedElement(editor, needle) {
       var sel = editor.getSelection();
@@ -41,9 +43,7 @@ CKEDITOR.plugins.add('uploadcare', {
         }
 
         uploadcare.plugin(function(uc) {
-          var settings = uc.settings.build(config);
-          var element;
-          var file;
+          var settings, element, file;
 
           if (element = searchSelectedElement(editor, 'img')) {
             file = element.getAttribute('src');
@@ -52,9 +52,12 @@ CKEDITOR.plugins.add('uploadcare', {
           }
 
           if (file && uc.utils.splitCdnUrl(file)) {
+            settings = uc.settings.build(
+              uc.jQuery.extend({}, config, {multiple: false})
+            );
             file = uploadcare.fileFrom('uploaded', file, settings);
-            settings.multiple = false;
           } else {
+            settings = uc.settings.build(config)
             file = null;
           }
 
