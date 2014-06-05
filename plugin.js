@@ -13,10 +13,10 @@ CKEDITOR.plugins.add('uploadcare', {
 
 
     // Apply default properties.
-    if ( ! 'crop' in config) {
+    if ( ! ('crop' in config)) {
       config.crop = '';
     }
-    if ( ! 'autostore' in config) {
+    if ( ! ('autostore' in config)) {
       config.autostore = true;
     }
 
@@ -82,7 +82,6 @@ CKEDITOR.plugins.add('uploadcare', {
               });
             });
           });
-
         });
       }
     });
