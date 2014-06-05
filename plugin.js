@@ -18,19 +18,56 @@ CKEDITOR.plugins.add('uploadcare', {
     UPLOADCARE_AUTOSTORE = true;
     CKEDITOR.scriptLoader.load(widget_url);
 
+    function searchSelectedElement(editor, needle) {
+      var sel = editor.getSelection();
+      var element = sel.getSelectedElement();
+      if (element && element.is(needle)) {
+        return element;
+      }
+
+      var range = sel.getRanges()[0];
+      if (range) {
+        range.shrink(CKEDITOR.SHRINK_TEXT);
+        return editor.elementPath(range.getCommonAncestor()).contains(needle, 1);
+      }
+    }
+
     editor.addCommand('showUploadcareDialog', {
-      allowedContent: 'img[src,alt]{width,height}',
+      allowedContent: 'img[!src,alt]{width,height};a[!href]',
       requiredContent: 'img',
       exec : function() {
-        var dialog = uploadcare.openDialog().done(function(file) {
-          file.done(function(fileInfo) {
-            url = fileInfo.cdnUrl;
-            if (fileInfo.isImage) {
-              editor.insertHtml('<img src="'+url+'" />', 'unfiltered_html');
-            } else {
-              editor.insertHtml('<a href="'+url+'">'+fileInfo.name+'</a>', 'unfiltered_html');
-            }
+        if (typeof uploadcare == 'undefined') {
+          return; // not loaded yet
+        }
+
+        uploadcare.plugin(function(uc) {
+          var settings = uc.settings.build(config);
+          var element;
+          var file;
+
+          if (element = searchSelectedElement(editor, 'img')) {
+            file = element.getAttribute('src');
+          } else if (element = searchSelectedElement(editor, 'a')) {
+            file = element.getAttribute('href');
+          }
+
+          if (file && uc.utils.splitCdnUrl(file)) {
+            file = uploadcare.fileFrom('uploaded', file, settings);
+          } else {
+            file = null;
+          }
+
+          var dialog = uploadcare.openDialog(file, config).done(function(file) {
+            file.done(function(fileInfo) {
+              url = fileInfo.cdnUrl;
+              if (fileInfo.isImage) {
+                editor.insertHtml('<img src="'+url+'" />', 'unfiltered_html');
+              } else {
+                editor.insertHtml('<a href="'+url+'">'+fileInfo.name+'</a>', 'unfiltered_html');
+              }
+            });
           });
+
         });
       }
     });
