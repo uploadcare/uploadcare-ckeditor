@@ -57,13 +57,21 @@ CKEDITOR.plugins.add('uploadcare', {
             file = null;
           }
 
-          var dialog = uploadcare.openDialog(file, config).done(function(file) {
+          var dialog = uploadcare.openDialog(file, settings).done(function(file) {
             file.done(function(fileInfo) {
               url = fileInfo.cdnUrl;
-              if (fileInfo.isImage) {
-                editor.insertHtml('<img src="'+url+'" />', 'unfiltered_html');
+              if (element) {
+                if (element.getName() == 'img') {
+                  element.setAttribute('src', url);
+                } else {
+                  element.setAttribute('href', url);
+                }
               } else {
-                editor.insertHtml('<a href="'+url+'">'+fileInfo.name+'</a>', 'unfiltered_html');
+                if (fileInfo.isImage) {
+                  editor.insertHtml('<img src="' + url + '" />', 'unfiltered_html');
+                } else {
+                  editor.insertHtml('<a href="' + url + '">'+fileInfo.name+'</a>', 'unfiltered_html');
+                }
               }
             });
           });
