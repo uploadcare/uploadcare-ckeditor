@@ -72,23 +72,28 @@ CKEDITOR.plugins.add('uploadcare', {
             var files = settings.multiple ? selected.files() : [selected];
             uc.jQuery.when.apply(null, files).done(function() {
               uc.jQuery.each(arguments, function() {
-                var url = this.cdnUrl;
+                var imageUrl = this.cdnUrl;
+                if (this.isImage && ! this.cdnUrlModifiers) {
+                  imageUrl += '-/preview/';
+                }
                 if (element) {
                   var widget;
                   if (editor.widgets && (widget = editor.widgets.selected[0])
                       && widget.element === element
                   ) {
-                    widget.setData('src', url).setData('height', null)
+                    widget.setData('src', imageUrl).setData('height', null)
                   } else if (element.getName() == 'img') {
-                    element.setAttribute('src', url);
+                    element.data('cke-saved-src', '');
+                    element.setAttribute('src', imageUrl);
                   } else {
-                    element.setAttribute('href', url);
+                    element.data('cke-saved-href', '');
+                    element.setAttribute('href', this.cdnUrl);
                   }
                 } else {
                   if (this.isImage) {
-                    editor.insertHtml('<img src="' + url + '-/preview/" alt="" /><br>', 'unfiltered_html');
+                    editor.insertHtml('<img src="' + imageUrl + '" alt="" /><br>', 'unfiltered_html');
                   } else {
-                    editor.insertHtml('<a href="' + url + '">'+this.name+'</a> ', 'unfiltered_html');
+                    editor.insertHtml('<a href="' + this.cdnUrl + '">'+this.name+'</a> ', 'unfiltered_html');
                   }
                 }
               });
