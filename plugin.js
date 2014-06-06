@@ -6,7 +6,7 @@ CKEDITOR.plugins.add('uploadcare', {
   icons: 'uploadcare',
   init : function(editor) {
     var config = editor.config.uploadcare || {};
-    var version = config.widgetVersion || '1.2.2';
+    var version = config.widgetVersion || '1.2.3';
     var widget_url = 'https://ucarecdn.com/widget/' + version +
              '/uploadcare/uploadcare-' + version + '.min.js'
     CKEDITOR.scriptLoader.load(widget_url);
@@ -25,6 +25,13 @@ CKEDITOR.plugins.add('uploadcare', {
       var element = sel.getSelectedElement();
       if (element && element.is(needle)) {
         return element;
+      }
+
+      var widget;
+      if (editor.widgets && (widget = editor.widgets.selected[0])) {
+        if (widget.element.is(needle)) {
+          return widget.element;
+        }
       }
 
       var range = sel.getRanges()[0];
@@ -67,16 +74,21 @@ CKEDITOR.plugins.add('uploadcare', {
               uc.jQuery.each(arguments, function() {
                 var url = this.cdnUrl;
                 if (element) {
-                  if (element.getName() == 'img') {
+                  var widget;
+                  if (editor.widgets && (widget = editor.widgets.selected[0])
+                      && widget.element === element
+                  ) {
+                    widget.setData('src', url).setData('height', null)
+                  } else if (element.getName() == 'img') {
                     element.setAttribute('src', url);
                   } else {
                     element.setAttribute('href', url);
                   }
                 } else {
                   if (this.isImage) {
-                    editor.insertHtml('<img src="' + url + '" alt="" />', 'unfiltered_html');
+                    editor.insertHtml('<img src="' + url + '-/preview/" alt="" /><br>', 'unfiltered_html');
                   } else {
-                    editor.insertHtml('<a href="' + url + '">'+this.name+'</a>', 'unfiltered_html');
+                    editor.insertHtml('<a href="' + url + '">'+this.name+'</a> ', 'unfiltered_html');
                   }
                 }
               });
