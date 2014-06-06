@@ -2,44 +2,111 @@
 // Version: 1.3.0
 
 CKEDITOR.plugins.add('uploadcare', {
-    init : function(editor) {
-        var me = this;
-        var widget_version = '1.0.0';
-        var widget_url = 'https://ucarecdn.com/widget/' + widget_version +
-                         '/uploadcare/uploadcare-' + widget_version + '.min.js'
+  hidpi: true,
+  icons: 'uploadcare',
+  init : function(editor) {
+    var config = editor.config.uploadcare || {};
+    var version = config.widgetVersion || '1.2.3';
+    var widget_url = 'https://ucarecdn.com/widget/' + version +
+             '/uploadcare/uploadcare-' + version + '.min.js'
+    CKEDITOR.scriptLoader.load(widget_url);
 
-        // Check for custom crop
-        if (typeof UPLOADCARE_CROP === 'undefined') {
-            UPLOADCARE_CROP = "";
+
+    // Apply default properties.
+    if ( ! ('crop' in config)) {
+      config.crop = '';
+    }
+    if ( ! ('autostore' in config)) {
+      config.autostore = true;
+    }
+
+    function searchSelectedElement(editor, needle) {
+      var sel = editor.getSelection();
+      var element = sel.getSelectedElement();
+      if (element && element.is(needle)) {
+        return element;
+      }
+
+      var widget;
+      if (editor.widgets && (widget = editor.widgets.selected[0])) {
+        if (widget.element.is(needle)) {
+          return widget.element;
+        }
+      }
+
+      var range = sel.getRanges()[0];
+      if (range) {
+        range.shrink(CKEDITOR.SHRINK_TEXT);
+        return editor.elementPath(range.getCommonAncestor()).contains(needle, 1);
+      }
+    }
+
+    editor.addCommand('showUploadcareDialog', {
+      allowedContent: 'img[!src,alt]{width,height};a[!href]',
+      requiredContent: 'img[src];a[href]',
+      exec : function() {
+        if (typeof uploadcare == 'undefined') {
+          return; // not loaded yet
         }
 
-        UPLOADCARE_AUTOSTORE = true;
-        CKEDITOR.scriptLoader.load(widget_url);
+        uploadcare.plugin(function(uc) {
+          var settings, element, file;
 
-        editor.addCommand('showUploadcareDialog', {
-            allowedContent: 'img',
-            requiredContent: 'img',
-            exec : function() {
-                var dialog = uploadcare.openDialog().done(function(file) {
-                    file.done(function(fileInfo) {
-                        url = fileInfo.cdnUrl;
-                        if (fileInfo.isImage) {
-                            editor.insertHtml('<img src="'+url+'" />', 'unfiltered_html');
-                        } else {
-                            editor.insertHtml('<a href="'+url+'">'+fileInfo.name+'</a>', 'unfiltered_html');
-                        }
-                    });
-                });
-            }
-        });
+          if (element = searchSelectedElement(editor, 'img')) {
+            file = element.getAttribute('src');
+          } else if (element = searchSelectedElement(editor, 'a')) {
+            file = element.getAttribute('href');
+          }
 
-        editor.ui.addButton('Uploadcare', {
-            label : 'Uploadcare',
-            toolbar : 'insert',
-            command : 'showUploadcareDialog',
-            icon : this.path + 'images/logo.png',
-            allowedContent: 'img[alt,dir,id,lang,longdesc,!src,title]{*}(*)',
-            requiredContent: 'img[alt,src]'
+          if (file && uc.utils.splitCdnUrl(file)) {
+            settings = uc.settings.build(
+              uc.jQuery.extend({}, config, {multiple: false})
+            );
+            file = uploadcare.fileFrom('uploaded', file, settings);
+          } else {
+            settings = uc.settings.build(config)
+            file = null;
+          }
+
+          var dialog = uploadcare.openDialog(file, settings).done(function(selected) {
+            var files = settings.multiple ? selected.files() : [selected];
+            uc.jQuery.when.apply(null, files).done(function() {
+              uc.jQuery.each(arguments, function() {
+                var imageUrl = this.cdnUrl;
+                if (this.isImage && ! this.cdnUrlModifiers) {
+                  imageUrl += '-/preview/';
+                }
+                if (element) {
+                  var widget;
+                  if (editor.widgets && (widget = editor.widgets.selected[0])
+                      && widget.element === element
+                  ) {
+                    widget.setData('src', imageUrl).setData('height', null)
+                  } else if (element.getName() == 'img') {
+                    element.data('cke-saved-src', '');
+                    element.setAttribute('src', imageUrl);
+                  } else {
+                    element.data('cke-saved-href', '');
+                    element.setAttribute('href', this.cdnUrl);
+                  }
+                } else {
+                  if (this.isImage) {
+                    editor.insertHtml('<img src="' + imageUrl + '" alt="" /><br>', 'unfiltered_html');
+                  } else {
+                    editor.insertHtml('<a href="' + this.cdnUrl + '">'+this.name+'</a> ', 'unfiltered_html');
+                  }
+                }
+              });
+            });
+          });
         });
-    }
+      }
+    });
+
+    editor.ui.addButton && editor.ui.addButton('Uploadcare', {
+      label : 'Uploadcare',
+      toolbar : 'insert',
+      command : 'showUploadcareDialog'
+    });
+  }
 });
