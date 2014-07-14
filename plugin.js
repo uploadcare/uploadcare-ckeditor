@@ -6,11 +6,14 @@ CKEDITOR.plugins.add('uploadcare', {
   icons: 'uploadcare',
   init : function(editor) {
     var config = editor.config.uploadcare || {};
-    var version = config.widgetVersion || '1.2.3';
-    var widget_url = 'https://ucarecdn.com/widget/' + version +
-             '/uploadcare/uploadcare-' + version + '.min.js'
-    CKEDITOR.scriptLoader.load(widget_url);
 
+    // Check if Uploadcare is already loaded and load it if not.
+    if (typeof uploadcare === 'undefined') {
+        var version = config.widgetVersion || '1.2.3';
+        var widget_url = 'https://ucarecdn.com/widget/' + version +
+                 '/uploadcare/uploadcare-' + version + '.min.js'
+        CKEDITOR.scriptLoader.load(widget_url);
+    }
 
     // Apply default properties.
     if ( ! ('crop' in config)) {
