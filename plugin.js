@@ -1,5 +1,5 @@
 // Uploadcare CKeditor plugin
-// Version: 2.0.0
+// Version: 2.1.0
 
 CKEDITOR.plugins.add('uploadcare', {
   hidpi: true,
@@ -9,18 +9,15 @@ CKEDITOR.plugins.add('uploadcare', {
 
     // Check if Uploadcare is already loaded and load it if not.
     if (typeof uploadcare === 'undefined') {
-        var version = config.widgetVersion || '1.3.1';
+        var version = config.widgetVersion || '2.0.4';
         var widget_url = 'https://ucarecdn.com/widget/' + version +
-                 '/uploadcare/uploadcare-' + version + '.min.js'
+                 '/uploadcare/uploadcare.full.min.js'
         CKEDITOR.scriptLoader.load(widget_url);
     }
 
     // Apply default properties.
     if ( ! ('crop' in config)) {
       config.crop = '';
-    }
-    if ( ! ('autostore' in config)) {
-      config.autostore = true;
     }
 
     function searchSelectedElement(editor, needle) {
@@ -96,7 +93,7 @@ CKEDITOR.plugins.add('uploadcare', {
                   if (this.isImage) {
                     editor.insertHtml('<img src="' + imageUrl + '" alt="" /><br>', 'unfiltered_html');
                   } else {
-                    editor.insertHtml('<a href="' + this.cdnUrl + '">'+this.name+'</a> ', 'unfiltered_html');
+                    editor.insertHtml('<a href="' + this.cdnUrl + '">' + this.name + '</a> ', 'unfiltered_html');
                   }
                 }
               });
