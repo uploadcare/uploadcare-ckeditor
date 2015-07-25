@@ -1,5 +1,5 @@
 // Uploadcare CKeditor plugin
-// Version: 2.1.0
+// Version: 2.1.1
 
 CKEDITOR.plugins.add('uploadcare', {
   hidpi: true,
@@ -9,7 +9,7 @@ CKEDITOR.plugins.add('uploadcare', {
 
     // Check if Uploadcare is already loaded and load it if not.
     if (typeof uploadcare === 'undefined') {
-        var version = config.widgetVersion || '2.0.4';
+        var version = config.widgetVersion || '2.4.0';
         var widget_url = 'https://ucarecdn.com/widget/' + version +
                  '/uploadcare/uploadcare.full.min.js'
         CKEDITOR.scriptLoader.load(widget_url);

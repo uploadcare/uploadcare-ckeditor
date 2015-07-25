@@ -41,8 +41,6 @@ read Uploadcare [widget][5] and [javascript API][6] documentation.
 "Automatic file storing" **should** be enabled in your project settings.
 Please follow https://uploadcare.com/dashboard/ to ensure.
 
-If you do not want to enable "Autostore", you can try to use *deprecated* [php-based version][4]
-
 ## Usage
 
 1. Press "Uploadcare" button.
@@ -58,7 +56,6 @@ Send any feedback or request support at hello@uploadcare.com
 [1]: https://uploadcare.com/
 [2]: https://uploadcare.com/documentation/cdn/
 [3]: http://ckeditor.com
-[4]: https://github.com/uploadcare/uploadcare-ckeditor/tree/php-dialog
 [5]: https://uploadcare.com/documentation/widget/
 [6]: https://uploadcare.com/documentation/javascript_api/
 [7]: https://uploadcare.com/demos/ckeditor/
