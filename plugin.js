@@ -2,6 +2,7 @@
 // Version: 2.1.1
 
 CKEDITOR.plugins.add('uploadcare', {
+  
   hidpi: true,
   icons: 'uploadcare',
   init : function(editor) {
@@ -91,7 +92,7 @@ CKEDITOR.plugins.add('uploadcare', {
                   }
                 } else {
                   if (this.isImage) {
-                    editor.insertHtml('<img src="' + imageUrl + '" alt="" /><br>', 'unfiltered_html');
+                    editor.insertHtml('<img src="' + imageUrl + '" alt="" source="uc"/><br>', 'unfiltered_html');
                   } else {
                     editor.insertHtml('<a href="' + this.cdnUrl + '">' + this.name + '</a> ', 'unfiltered_html');
                   }
@@ -108,5 +109,65 @@ CKEDITOR.plugins.add('uploadcare', {
       toolbar : 'insert',
       command : 'showUploadcareDialog'
     });
+    
+    editor.on('contentDom', function() {
+      var editable = editor.editable();
+      var tools = null;
+      
+      editable.attachListener( editable.isInline() ? editable : editor.document, 'mousemove', function( evt ) {
+        evt = evt.data;
+        var target = evt.getTarget();
+        var src = target.$.getAttribute('src');
+        
+        if(target.is('img') && (src.indexOf('www.ucarecdn.com') > -1)) {
+          var body = editable.getDocument().getDocumentElement();
+          if(!tools) {
+            tools = body.findOne('div[class="toolsContainer"]');
+            if(!tools) {
+              tools = CKEDITOR.dom.element.createFromHtml('<div class="toolsContainer"><button class="button resize">Resize</button></div>');
+            }
+            tools.setStyle('position', 'absolute');
+            tools.setStyle('zindex', '100');
+            body.append(tools); 
+            tools.on('mouseout', onMouseOut);
+          }
+          else {
+            tools.show();
+          }
+          
+          var rect = target.$.getBoundingClientRect();
+          console.log(rect.top, rect.right, rect.bottom, rect.left);
+          tools.setStyle('top', rect.top + 'px');
+          tools.setStyle('left', rect.left + 'px');
+          
+          target.removeAllListeners();
+          target.on('mouseout', onMouseOut);          
+          
+          function onMouseOut(evt) {
+            var target = evt.data.getTarget();
+            var rect = target.$.getBoundingClientRect();
+            if((evt.data.$.clientX < rect.left || evt.data.$.clientX > rect.right) || 
+            (evt.data.$.clientY < rect.top || evt.data.$.clientY > rect.bottom)) {
+              tools.hide();  
+            }
+          }
+        } else if (tools && target !== tools) {
+          if(target.getParent() && !target.getParent().hasClass('toolsContainer')) {
+            tools.hide();
+          }
+        }     
+      });
+      
+      editor.on('dragstart', function(evt) {
+        clearTools();
+      });
+      
+      
+      function clearTools() {
+        var body = editable.getDocument().getDocumentElement();
+        var tools = body.findOne('div[class="toolsContainer"]'); 
+        tools.hide();
+      }
+    });    
   }
 });
