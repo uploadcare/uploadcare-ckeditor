@@ -1,0 +1,29 @@
+.tools-container {
+  position: absolute;
+}
+
+.button {
+  
+}
+ 
+.resize {
+  
+}
+
+.screen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  z-index: 10;
+  cursor: default;
+}
+
+.resize-border {
+  position: absolute;
+  border: 1px dashed #bbbbbb;
+  z-index: 11;
+  background-color: rgba(128, 128, 128, 0.15);
+  cursor: default;
+}

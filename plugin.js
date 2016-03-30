@@ -1,11 +1,11 @@
 // Uploadcare CKeditor plugin
 // Version: 2.1.1
-
+'use strict';
 CKEDITOR.plugins.add('uploadcare', {
-  
   hidpi: true,
   icons: 'uploadcare',
   init : function(editor) {
+    editor.addContentsCss( this.path + 'styles/plugin.css' );
     var config = editor.config.uploadcare || {};
 
     // Check if Uploadcare is already loaded and load it if not.
@@ -122,11 +122,11 @@ CKEDITOR.plugins.add('uploadcare', {
         if(target.is('img') && (src.indexOf('www.ucarecdn.com') > -1)) {
           var body = editable.getDocument().getDocumentElement();
           if(!tools) {
-            tools = body.findOne('div[class="toolsContainer"]');
+            tools = body.findOne('div[class="tools-container"]');
             if(!tools) {
-              tools = CKEDITOR.dom.element.createFromHtml('<div class="toolsContainer"><button class="button resize">Resize</button></div>');
+              tools = CKEDITOR.dom.element.createFromHtml('<div class="tools-container"><button class="button resize">Resize</button></div>');
+              
             }
-            tools.setStyle('position', 'absolute');
             tools.setStyle('zindex', '100');
             body.append(tools); 
             tools.on('mouseout', onMouseOut);
@@ -135,10 +135,12 @@ CKEDITOR.plugins.add('uploadcare', {
             tools.show();
           }
           
-          var rect = target.$.getBoundingClientRect();
-          console.log(rect.top, rect.right, rect.bottom, rect.left);
+          var rect = getPosition(target);
           tools.setStyle('top', rect.top + 'px');
           tools.setStyle('left', rect.left + 'px');
+          
+          tools.removeAllListeners();
+          tools.on('click', onResizeAction.bind(target));
           
           target.removeAllListeners();
           target.on('mouseout', onMouseOut);          
@@ -152,7 +154,7 @@ CKEDITOR.plugins.add('uploadcare', {
             }
           }
         } else if (tools && target !== tools) {
-          if(target.getParent() && !target.getParent().hasClass('toolsContainer')) {
+          if(target.getParent() && !target.getParent().hasClass('tools-container')) {
             tools.hide();
           }
         }     
@@ -162,12 +164,66 @@ CKEDITOR.plugins.add('uploadcare', {
         clearTools();
       });
       
-      
       function clearTools() {
         var body = editable.getDocument().getDocumentElement();
-        var tools = body.findOne('div[class="toolsContainer"]'); 
+        var tools = body.findOne('div[class="tools-container"]'); 
         tools.hide();
       }
+      
+      function onResizeAction(evt) {
+        clearTools();
+        editor.fire('saveSnapshot');
+        var img = this;
+        var rect = getPosition(img);
+        editor.getSelection().fake(img);
+        
+        var body = editable.getDocument().getDocumentElement();
+        var screenOverlay = CKEDITOR.dom.element.createFromHtml('<div class="screen-overlay"><div>');
+        var resizeBorder = CKEDITOR.dom.element.createFromHtml('<div class="resize-border"><div>');
+        screenOverlay.append(resizeBorder);
+        body.append(screenOverlay);
+        
+        var bodyRect = getPosition(editable.getDocument().getDocumentElement());
+        
+        screenOverlay.setStyle('width', bodyRect.width + 'px');
+        screenOverlay.setStyle('height', bodyRect.height + 'px');
+        
+        resizeBorder.setStyle('top', rect.top + 'px');
+        resizeBorder.setStyle('left', rect.left + 'px');
+        resizeBorder.setStyle('width', rect.width + 'px');
+        resizeBorder.setStyle('height', rect.height + 'px');
+        
+        screenOverlay.on('click', function(){
+          screenOverlay.remove();
+        });
+        
+        resizeBorder.on('click', function(evt) {
+          evt.data.$.stopPropagation();
+          evt.data.$.preventDefault();
+        });
+      }
+      
+      function drawResizeRect(rect) {
+        
+      }
+      
+      function getPosition(element) {
+        var body = getBody();
+        var resRect = element.$.getBoundingClientRect();
+        
+        return {
+          top: resRect.top + body.$.scrollTop,
+          bottom: resRect.bottom + body.$.scrollTop,
+          left: resRect.left + body.$.scrollLeft,
+          right: resRect.right + body.$.scrollLeft,
+          width: resRect.width,
+          height: resRect.height
+        };
+      }
+      
+      function getBody() {
+        return editable.getDocument().getDocumentElement().findOne('body');
+      } 
     });    
   }
 });
