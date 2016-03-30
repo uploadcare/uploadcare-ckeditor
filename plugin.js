@@ -92,7 +92,7 @@ CKEDITOR.plugins.add('uploadcare', {
                   }
                 } else {
                   if (this.isImage) {
-                    editor.insertHtml('<img src="' + imageUrl + '" alt="" source="uc"/><br>', 'unfiltered_html');
+                    editor.insertHtml('<img src="' + imageUrl + '" alt=""/><br>', 'unfiltered_html');
                   } else {
                     editor.insertHtml('<a href="' + this.cdnUrl + '">' + this.name + '</a> ', 'unfiltered_html');
                   }
@@ -113,13 +113,17 @@ CKEDITOR.plugins.add('uploadcare', {
     editor.on('contentDom', function() {
       var editable = editor.editable();
       var tools = null;
+      var isResizing = false;
+      var resizeImg = null;
+      var resizeElements = null;
+      var resizerSize = 12;
       
       editable.attachListener( editable.isInline() ? editable : editor.document, 'mousemove', function( evt ) {
         evt = evt.data;
         var target = evt.getTarget();
         var src = target.$.getAttribute('src');
         
-        if(target.is('img') && (src.indexOf('www.ucarecdn.com') > -1)) {
+        if(target.is('img') && (src.indexOf('www.ucarecdn.com') > -1) && !isResizing) {
           var body = editable.getDocument().getDocumentElement();
           if(!tools) {
             tools = body.findOne('div[class="tools-container"]');
@@ -153,11 +157,50 @@ CKEDITOR.plugins.add('uploadcare', {
               tools.hide();  
             }
           }
-        } else if (tools && target !== tools) {
+        } else if (tools && target !== tools && !isResizing) {
           if(target.getParent() && !target.getParent().hasClass('tools-container')) {
             tools.hide();
           }
-        }     
+        }
+        
+        if(isResizing) {
+          console.log('Resizing!!!!');
+          var nativeEvt = evt.$;
+
+          var moveDiffX = nativeEvt.screenX - resizeElements.startX;
+          var moveDiffY = resizeElements.startY - nativeEvt.screenY;
+          var moveRatio = Math.abs(moveDiffX / moveDiffY);
+          
+          if ( moveDiffX <= 0 ) {
+						if ( moveDiffY <= 0 ) {
+							adjustToX(moveDiffX);
+            } else {
+							if ( moveRatio >= resizeElements.ratio ) {
+								adjustToX(moveDiffX);
+              } else {
+								adjustToY(moveDiffY); 
+              }
+						}
+					} else {
+						if ( moveDiffY <= 0 ) {
+							if ( moveRatio >= resizeElements.ratio ) {
+								adjustToY(moveDiffY);
+              } else {
+								adjustToX(moveDiffX);
+              }
+						} else {
+							adjustToY(moveDiffY);
+						}
+					}
+            if(resizeElements.newWidth >= 15 && resizeElements.newHeight >= 15) {
+              resizeImg.setAttributes( {width: resizeElements.newWidth, height: resizeElements.newHeight} );
+              resizeElements.resizeBorder.setStyle('width', resizeElements.newWidth + 'px');
+              resizeElements.resizeBorder.setStyle('height', resizeElements.newHeight + 'px');
+              
+              resizeElements.bottomRightResizer.setStyle('left', resizeElements.imgRect.left + resizeElements.newWidth - resizerSize/2 + 'px');
+              resizeElements.bottomRightResizer.setStyle('top', resizeElements.imgRect.top + resizeElements.newHeight - resizerSize/2 + 'px');
+            }
+					}
       });
       
       editor.on('dragstart', function(evt) {
@@ -177,7 +220,7 @@ CKEDITOR.plugins.add('uploadcare', {
         var rect = getPosition(img);
         editor.getSelection().fake(img);
         
-        var body = editable.getDocument().getDocumentElement();
+        var body = getBody();
         var screenOverlay = CKEDITOR.dom.element.createFromHtml('<div class="screen-overlay"><div>');
         var resizeBorder = CKEDITOR.dom.element.createFromHtml('<div class="resize-border"><div>');
         screenOverlay.append(resizeBorder);
@@ -193,18 +236,76 @@ CKEDITOR.plugins.add('uploadcare', {
         resizeBorder.setStyle('width', rect.width + 'px');
         resizeBorder.setStyle('height', rect.height + 'px');
         
+        resizeElements = {
+          resizeBorder: resizeBorder,
+          imgRect: rect
+        }
+        
+        createResizers(rect, screenOverlay);
+        resizeImg = img;
+        
         screenOverlay.on('click', function(){
+          if(isResizing) {
+            isResizing = false;
+            editor.fire('saveSnapshot');
+            updateImgSrc();
+            return;
+          }
+          
           screenOverlay.remove();
+                    
+          resizeImg = null;
+          resizeElements = null;
         });
         
         resizeBorder.on('click', function(evt) {
           evt.data.$.stopPropagation();
           evt.data.$.preventDefault();
         });
+        
+        resizeElements.bottomRightResizer.on('mousedown', function(evt) {
+          
+          console.log('mouse Down');
+          console.log(evt);
+          evt.data.$.stopPropagation();
+          evt.data.$.preventDefault();
+          isResizing = true;
+          resizeElements.startX = evt.data.$.screenX;
+				  resizeElements.startY = evt.data.$.screenY;
+          resizeElements.startWidth = resizeImg.$.clientWidth;
+          resizeElements.startHeight = resizeImg.$.clientHeight;
+          resizeElements.ratio = resizeElements.startWidth / resizeElements.startHeight;
+          
+        });
+        
+        resizeElements.bottomRightResizer.on('mouseup', function(evt) {
+          console.log('Mouse Up');
+          console.log(evt);
+//          evt.data.$.stopPropagation();
+//          evt.data.$.preventDefault();
+          isResizing = false;
+          editor.fire('saveSnapshot');
+          updateImgSrc();
+        });
       }
       
-      function drawResizeRect(rect) {
+      function createResizers(rect, overlay) {
         
+        var bottomRightResizer = CKEDITOR.dom.element.createFromHtml('<div class="resizer bottom-right"><div>');
+        setUpResizer(bottomRightResizer, rect.bottom, rect.right, resizerSize);
+        overlay.append(bottomRightResizer);
+        resizeElements.bottomRightResizer = bottomRightResizer;
+      }
+      
+      function setUpResizer(element, top, left, size) {
+        element.setStyle('top', top - size/2 + 'px');
+        element.setStyle('left', left - size/2 + 'px');
+        element.setStyle('width', size + 'px');
+        element.setStyle('height', size + 'px');
+        element.on('click', function(evt) {
+          evt.data.$.stopPropagation();
+          evt.data.$.preventDefault();
+        });
       }
       
       function getPosition(element) {
@@ -221,9 +322,29 @@ CKEDITOR.plugins.add('uploadcare', {
         };
       }
       
+      function updateImgSrc() {
+        var initialUrl = resizeImg.getAttribute('src');
+        var newUrl = initialUrl.substr(0, initialUrl.indexOf('/preview')) + '/preview/' + resizeElements.newWidth + 'x' + resizeElements.newHeight + '/';
+        resizeImg.setAttributes({
+              'data-cke-saved-src': newUrl,
+              'src': newUrl
+            });
+      }
+      
       function getBody() {
         return editable.getDocument().getDocumentElement().findOne('body');
       } 
+      
+      function adjustToX(moveDiffX) {
+				resizeElements.newWidth = resizeElements.startWidth + moveDiffX;
+				resizeElements.newHeight = Math.round( resizeElements.newWidth / resizeElements.ratio );
+			}
+
+			// Calculate height first, and then adjust width, preserving ratio.
+			function adjustToY(moveDiffY) {
+				resizeElements.newHeight = resizeElements.startHeight - moveDiffY;
+				resizeElements.newWidth = Math.round( resizeElements.newHeight * resizeElements.ratio );
+			}
     });    
   }
 });

@@ -6,10 +6,6 @@
   
 }
  
-.resize {
-  
-}
-
 .screen-overlay {
   position: absolute;
   top: 0;
@@ -26,4 +22,27 @@
   z-index: 11;
   background-color: rgba(128, 128, 128, 0.15);
   cursor: default;
+}
+
+.resizer {
+  background-color: white;
+  border: 1px solid #bbbbbb;
+  position: absolute;
+  z-index: 12;
+}
+
+.top-left {
+  cursor: nw-resize;
+}
+
+.top-right {
+  cursor: ne-resize;
+}
+
+.bottom-left {
+  cursor: sw-resize;
+}
+
+.bottom-right {
+  cursor: se-resize;
 }
