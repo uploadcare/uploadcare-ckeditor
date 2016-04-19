@@ -86,6 +86,8 @@ CKEDITOR.plugins.add('uploadcare', {
                   } else if (element.getName() == 'img') {
                     element.data('cke-saved-src', '');
                     element.setAttribute('src', imageUrl);
+                    element.removeAttribute('width');
+                    element.removeAttribute('height');
                   } else {
                     element.data('cke-saved-href', '');
                     element.setAttribute('href', this.cdnUrl);
@@ -123,13 +125,22 @@ CKEDITOR.plugins.add('uploadcare', {
         var target = evt.getTarget();
         var src = target.$.getAttribute('src');
         
+        function onMouseOut(evt) {
+          var target = evt.data.getTarget();
+          var rect = target.$.getBoundingClientRect();
+          
+          if((evt.data.$.clientX < rect.left || evt.data.$.clientX > rect.right) || 
+          (evt.data.$.clientY < rect.top || evt.data.$.clientY > rect.bottom)) {
+            tools.hide();  
+          }
+        }
+        
         if(target.is('img') && (src.indexOf('www.ucarecdn.com') > -1) && !isResizing) {
-          var body = editable.getDocument().getDocumentElement();
+          var body = getBody();
           if(!tools) {
-            tools = body.findOne('div[class="tools-container"]');
+            tools = body.findOne('div.tools-container');
             if(!tools) {
-              tools = CKEDITOR.dom.element.createFromHtml('<div class="tools-container"><button class="button resize">Resize</button></div>');
-              
+              tools = CKEDITOR.dom.element.createFromHtml('<div class="tools-container"><button class="button resize icon icon-resize"></button><button class="button dialog icon icon-uploadcare"></button></div>');
             }
             tools.setStyle('zindex', '100');
             body.append(tools); 
@@ -144,20 +155,21 @@ CKEDITOR.plugins.add('uploadcare', {
           tools.setStyle('left', rect.left + 'px');
           
           tools.removeAllListeners();
-          tools.on('click', onResizeAction.bind(target));
+          var resizeBtn = tools.findOne('button.resize');
+          resizeBtn.removeAllListeners();
+          resizeBtn.on('click', onResizeAction.bind(target));
+          
+          var dialogBtn = tools.findOne('button.dialog');
+          dialogBtn.removeAllListeners();
+          dialogBtn.on('click', function(){
+            editor.getSelection().selectElement( target );
+            editor.execCommand('showUploadcareDialog');
+          });
           
           target.removeAllListeners();
           target.on('mouseout', onMouseOut);          
           
-          function onMouseOut(evt) {
-            var target = evt.data.getTarget();
-            var rect = target.$.getBoundingClientRect();
-            if((evt.data.$.clientX < rect.left || evt.data.$.clientX > rect.right) || 
-            (evt.data.$.clientY < rect.top || evt.data.$.clientY > rect.bottom)) {
-              tools.hide();  
-            }
-          }
-        } else if (tools && target !== tools && !isResizing) {
+        } else if (tools && target.$ !== tools.$ && !isResizing) {
           if(target.getParent() && !target.getParent().hasClass('tools-container')) {
             tools.hide();
           }
@@ -207,15 +219,22 @@ CKEDITOR.plugins.add('uploadcare', {
         clearTools();
       });
       
-      function clearTools() {
-        var body = editable.getDocument().getDocumentElement();
-        var tools = body.findOne('div[class="tools-container"]'); 
-        tools.hide();
+      function clearTools() {        
+        setTimeout(function(){
+          var body = getBody();
+          var tools = body.findOne('div.tools-container'); 
+          
+          if(tools) {
+            tools.hide();
+          } else {
+            console.log('tools not found');
+          }
+          
+        });
       }
       
-      function onResizeAction(evt) {
+      function onResizeAction(raEvt) {
         clearTools();
-        editor.fire('saveSnapshot');
         var img = this;
         var rect = getPosition(img);
         editor.getSelection().fake(img);
@@ -238,40 +257,41 @@ CKEDITOR.plugins.add('uploadcare', {
         
         resizeElements = {
           resizeBorder: resizeBorder,
-          imgRect: rect
+          imgRect: rect,
+          newWidth: rect.width,
+          newHeight: rect.height
         }
         
         createResizers(rect, screenOverlay);
         resizeImg = img;
         
         screenOverlay.on('click', function(){
+          editor.resetUndo();
           if(isResizing) {
             isResizing = false;
-            editor.fire('saveSnapshot');
             updateImgSrc();
             return;
           }
           
           screenOverlay.remove();
-                    
           resizeImg = null;
           resizeElements = null;
         });
         
-        resizeBorder.on('click', function(evt) {
-          evt.data.$.stopPropagation();
-          evt.data.$.preventDefault();
+        resizeBorder.on('click', function(clickEvt) {
+          clickEvt.data.$.stopPropagation();
+          clickEvt.data.$.preventDefault();
         });
         
-        resizeElements.bottomRightResizer.on('mousedown', function(evt) {
+        resizeElements.bottomRightResizer.on('mousedown', function(mdEvt) {
           
           console.log('mouse Down');
-          console.log(evt);
-          evt.data.$.stopPropagation();
-          evt.data.$.preventDefault();
+          console.log(mdEvt);
+          mdEvt.data.$.stopPropagation();
+          mdEvt.data.$.preventDefault();
           isResizing = true;
-          resizeElements.startX = evt.data.$.screenX;
-				  resizeElements.startY = evt.data.$.screenY;
+          resizeElements.startX = mdEvt.data.$.screenX;
+				  resizeElements.startY = mdEvt.data.$.screenY;
           resizeElements.startWidth = resizeImg.$.clientWidth;
           resizeElements.startHeight = resizeImg.$.clientHeight;
           resizeElements.ratio = resizeElements.startWidth / resizeElements.startHeight;
@@ -279,12 +299,10 @@ CKEDITOR.plugins.add('uploadcare', {
         });
         
         resizeElements.bottomRightResizer.on('mouseup', function(evt) {
+          editor.resetUndo();
           console.log('Mouse Up');
           console.log(evt);
-//          evt.data.$.stopPropagation();
-//          evt.data.$.preventDefault();
           isResizing = false;
-          editor.fire('saveSnapshot');
           updateImgSrc();
         });
       }
