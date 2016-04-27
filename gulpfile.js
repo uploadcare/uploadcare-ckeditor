@@ -32,9 +32,9 @@ gulp.task('browserify', function () {
     .pipe(source('plugin.js'))
     .pipe(buffer())
 //    .pipe(gulpif(debug, sourcemaps.init({loadMaps: true})))
-//    .pipe(sourcemaps.init({loadMaps: true}))
-//    .pipe(uglify())
-//    .pipe(sourcemaps.write('./'))
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./'));
 });
 

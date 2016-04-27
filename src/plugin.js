@@ -65,7 +65,7 @@ CKEDITOR.plugins.add('uploadcare', {
           if(!tools) {
             tools = body.findOne('div.tools-container');
             if(!tools) {
-              tools = CKEDITOR.dom.element.createFromHtml('<div class="tools-container"><button class="button resize icon icon-resize"></button><button class="button dialog icon icon-uploadcare"></button></div>');
+              tools = CKEDITOR.dom.element.createFromHtml('<div class="tools-container"><button class="button resize icon icon-resize"></button><button class="button dialog icon icon-crop"></button></div>');
             }
             tools.setStyle('zindex', '100');
             body.append(tools); 

@@ -23,7 +23,7 @@
 }
 
 .icon-resize {
-  background: url("../icons/resize.png") 100% 100% no-repeat;
+  background: url("../icons/resize.svg") 100% 100% no-repeat;
   background-position: center;
   background-size: 16px 16px;
 }
@@ -31,6 +31,12 @@
 .icon-uploadcare {
   background: url("../icons/uploadcare.png") 100% 100% no-repeat;
   background-position: center;
+}
+
+.icon-crop {
+  background: url("../icons/crop.svg") 100% 100% no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
 } 
  
 .screen-overlay {
