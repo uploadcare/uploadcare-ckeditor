@@ -43,7 +43,7 @@ CKEDITOR.plugins.add('uploadcare', {
       var resizeElements = null;
       var resizerSize = 12;
       
-      var clearTools = require('./tools/clear-tools');
+      var clearToolbar = require('./tools/clear-toolbar');
       
       editable.attachListener( editable.isInline() ? editable : editor.document, 'mousemove', function( evt ) {
         evt = evt.data;
@@ -141,11 +141,11 @@ CKEDITOR.plugins.add('uploadcare', {
       });
       
       editor.on('dragstart', function(evt) {
-        clearTools();
+        clearToolbar();
       });
 
       function onResizeAction(raEvt) {
-        clearTools();
+        clearToolbar();
         var img = this;
         var rect = getPosition(img);
         editor.getSelection().fake(img);
