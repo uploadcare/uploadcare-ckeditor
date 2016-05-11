@@ -49,7 +49,7 @@ CKEDITOR.plugins.add('uploadcare', {
         evt = evt.data;
         var target = evt.getTarget();
         var src = target.$.getAttribute('src');
-        
+         
         function onMouseOut(evt) {
           var target = evt.data.getTarget();
           var rect = target.$.getBoundingClientRect();
