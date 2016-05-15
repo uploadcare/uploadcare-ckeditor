@@ -3,6 +3,7 @@
 'use strict';
 
 var editInst = require('./globals/editor');
+var findOne = require('./tools/find-one');
 
 CKEDITOR.plugins.add('uploadcare', {
   hidpi: true,
@@ -11,7 +12,7 @@ CKEDITOR.plugins.add('uploadcare', {
     editInst.editor = editor;
     var getBody = require('./tools/get-body');
     
-    editor.addContentsCss( this.path + 'styles/plugin.css' );
+    CKEDITOR.addCss(require('./styles/resize'));
     var config = editor.config.uploadcare || {};
 
     // Check if Uploadcare is already loaded and load it if not.
@@ -62,14 +63,30 @@ CKEDITOR.plugins.add('uploadcare', {
         
         if(target.is('img') && (src.indexOf('www.ucarecdn.com') > -1) && !isResizing) {
           var body = getBody();
+          editInst.targetImg = target;
           if(!tools) {
-            tools = body.findOne('div.tools-container');
+            tools = body.findOne ? body.findOne('div.tools-container') : findOne.bind(body)('div.tools-container');
             if(!tools) {
               tools = CKEDITOR.dom.element.createFromHtml('<div class="tools-container"><button class="button resize icon icon-resize"></button><button class="button dialog icon icon-crop"></button></div>');
             }
             tools.setStyle('zindex', '100');
             body.append(tools); 
             tools.on('mouseout', onMouseOut);
+            
+            tools.removeAllListeners();
+            var resizeBtn = tools.findOne ? tools.findOne('button.resize') : findOne.bind(tools)('button.resize');
+            
+            resizeBtn.on('click', onResizeAction);
+            
+            var dialogBtn = tools.findOne ? tools.findOne('button.dialog') : findOne.bind(tools)('button.dialog');
+            dialogBtn.on('click', function(){
+              editor.getSelection().selectElement( editInst.targetImg );
+              editor.execCommand('showUploadcareDialog');
+            });
+            
+            target.removeAllListeners();
+            target.on('mouseout', onMouseOut);          
+            
           }
           else {
             tools.show();
@@ -79,20 +96,6 @@ CKEDITOR.plugins.add('uploadcare', {
           tools.setStyle('top', rect.top + 'px');
           tools.setStyle('left', rect.left + 'px');
           
-          tools.removeAllListeners();
-          var resizeBtn = tools.findOne('button.resize');
-          resizeBtn.removeAllListeners();
-          resizeBtn.on('click', onResizeAction.bind(target));
-          
-          var dialogBtn = tools.findOne('button.dialog');
-          dialogBtn.removeAllListeners();
-          dialogBtn.on('click', function(){
-            editor.getSelection().selectElement( target );
-            editor.execCommand('showUploadcareDialog');
-          });
-          
-          target.removeAllListeners();
-          target.on('mouseout', onMouseOut);          
           
         } else if (tools && target.$ !== tools.$ && !isResizing) {
           if(target.getParent() && !target.getParent().hasClass('tools-container')) {
@@ -146,9 +149,12 @@ CKEDITOR.plugins.add('uploadcare', {
 
       function onResizeAction(raEvt) {
         clearToolbar();
-        var img = this;
+        var img = editInst.targetImg;
         var rect = getPosition(img);
-        editor.getSelection().fake(img);
+        var selection = editor.getSelection();
+        if(selection.fake) {
+          selection.fake(img);
+        }
         
         var body = getBody();
         var screenOverlay = CKEDITOR.dom.element.createFromHtml('<div class="screen-overlay"><div>');

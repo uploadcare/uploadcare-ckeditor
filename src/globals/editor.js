@@ -1,5 +1,6 @@
 'use scrict'
 
 module.exports = {
-  editor:null
+  editor: null,
+  targetImg: null
 }
