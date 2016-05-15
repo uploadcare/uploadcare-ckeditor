@@ -25,3 +25,4 @@ function createTmpId( element ) {
 				element.removeAttribute( 'id' );
 		};
 	}
+  

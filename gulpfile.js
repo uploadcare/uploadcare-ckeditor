@@ -93,8 +93,3 @@ gulp.task('browsersync', ['watchify'], function() {
 gulp.task('watch', ['browsersync']);
 gulp.task('default', ['watch']);
 gulp.task('build', ['browserify']);
-
-
-
-
-
