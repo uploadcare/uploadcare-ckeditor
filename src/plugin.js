@@ -1,5 +1,5 @@
 // Uploadcare CKeditor plugin
-// Version: 2.1.1
+// Version: 2.1.5
 'use strict';
 
 var findOne = require('./tools/find-one');

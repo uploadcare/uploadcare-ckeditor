@@ -1,7 +1,7 @@
 {
   "name": "uploadcare",
-  "version": "0.0.1",
-  "description": "uploadcare ckEditor plugin",
+  "version": "2.1.5",
+  "description": "uploadcare CKEditor plugin",
   "main": "plugin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
