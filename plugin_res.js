@@ -176,7 +176,6 @@ CKEDITOR.plugins.add('uploadcare', {
         }
         
         if(isResizing) {
-          console.log('Resizing!!!!');
           var nativeEvt = evt.$;
 
           var moveDiffX = nativeEvt.screenX - resizeElements.startX;
@@ -226,8 +225,6 @@ CKEDITOR.plugins.add('uploadcare', {
           
           if(tools) {
             tools.hide();
-          } else {
-            console.log('tools not found');
           }
           
         });
@@ -283,10 +280,7 @@ CKEDITOR.plugins.add('uploadcare', {
           clickEvt.data.$.preventDefault();
         });
         
-        resizeElements.bottomRightResizer.on('mousedown', function(mdEvt) {
-          
-          console.log('mouse Down');
-          console.log(mdEvt);
+        resizeElements.bottomRightResizer.on('mousedown', function(mdEvt) {          
           mdEvt.data.$.stopPropagation();
           mdEvt.data.$.preventDefault();
           isResizing = true;
@@ -300,8 +294,6 @@ CKEDITOR.plugins.add('uploadcare', {
         
         resizeElements.bottomRightResizer.on('mouseup', function(evt) {
           editor.resetUndo();
-          console.log('Mouse Up');
-          console.log(evt);
           isResizing = false;
           updateImgSrc();
         });

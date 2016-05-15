@@ -1,13 +1,12 @@
 'use strict'
 
 var searchSelectedElement = require ('../tools/search-selected-element');
-var editInst = require('../globals/editor');
 
 module.exports = function() {
   if (typeof uploadcare == 'undefined') {
     return; // not loaded yet
   }
-  var editor = editInst.editor;
+  var editor = CKEDITOR.currentInstance;
   
   var config = editor.config.uploadcare || {};
   
