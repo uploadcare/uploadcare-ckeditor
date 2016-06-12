@@ -1,7 +1,5 @@
 'use strict'
 
-var editor = require('../globals/editor').editor;
-
 module.exports = function getBody() {
   try {
     var editor = CKEDITOR.currentInstance;
