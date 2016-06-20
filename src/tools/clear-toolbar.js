@@ -3,8 +3,8 @@
 var getBody = require('./get-body');
 var findOne = require('./find-one');
 
-module.exports = function() {        
-  var body = getBody();
+module.exports = function(editor) {        
+  var body = getBody(editor);
   
   if(!body) {
     return;

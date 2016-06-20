@@ -1,12 +1,14 @@
 'use strict'
 
 var searchSelectedElement = require ('../tools/search-selected-element');
+var getBody = require('../tools/get-body');
 
 module.exports = function() {
   if (typeof uploadcare == 'undefined') {
     return; // not loaded yet
   }
-  var editor = CKEDITOR.currentInstance;
+
+  var editor = this;
   
   var config = editor.config.uploadcare || {};
   
@@ -59,7 +61,24 @@ module.exports = function() {
             }
           } else {
             if (this.isImage) {
-              editor.insertHtml('<img src="' + imageUrl + '" alt=""/><br>', 'unfiltered_html');
+              var imgElement = CKEDITOR.dom.element.createFromHtml( '<img src="' + imageUrl + '" alt=""/>' );
+              var brElement = CKEDITOR.dom.element.createFromHtml( '<br/>' );
+              imgElement.$.onload = function(evt) {
+                console.log(evt);
+                var imgRate = evt.target.width/evt.target.height;
+                var bodyWidth = getBody(editor).$.clientWidth;
+                if(bodyWidth < evt.target.width)
+                {
+                  var newImgWidth = bodyWidth - 10;
+                  var newImgHeight = Math.round(newImgWidth / imgRate);
+                  imgElement.setAttribute('width', newImgWidth);
+                  imgElement.setAttribute('height', newImgHeight);
+                }
+                editor.insertElement(imgElement);
+                editor.insertElement(brElement);
+                imgElement.$.onload = undefined;
+              }
+              
             } else {
               editor.insertHtml('<a href="' + this.cdnUrl + '">' + this.name + '</a> ', 'unfiltered_html');
             }
