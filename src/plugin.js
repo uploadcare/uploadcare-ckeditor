@@ -21,11 +21,12 @@ CKEDITOR.plugins.add('uploadcare', {
                  '/uploadcare/uploadcare.full.min.js'
         CKEDITOR.scriptLoader.load(widget_url);
     }
+    
 
     editor.addCommand('showUploadcareDialog', {
       allowedContent: 'img[!src,alt]{width,height};a[!href]',
       requiredContent: 'img[src];a[href]',
-      exec : require('./commands/show-uploadcare-dialog')
+      exec : require('./commands/show-uploadcare-dialog').bind(editor)
     });
 
     editor.ui.addButton && editor.ui.addButton('Uploadcare', {
@@ -61,7 +62,7 @@ CKEDITOR.plugins.add('uploadcare', {
         }
         
         if(target.is('img') && (src.indexOf('www.ucarecdn.com') > -1) && !isResizing) {
-          var body = getBody();
+          var body = getBody(editor);
           if(!body) {
             return;
           }
@@ -145,11 +146,11 @@ CKEDITOR.plugins.add('uploadcare', {
       });
       
       editor.on('dragstart', function(evt) {
-        clearToolbar();
+        clearToolbar(editor);
       });
 
       function onResizeAction(raEvt) {
-        clearToolbar();
+        clearToolbar(editor);
         var img = targetImg;
         var rect = getPosition(img);
         var selection = editor.getSelection();
@@ -157,7 +158,7 @@ CKEDITOR.plugins.add('uploadcare', {
           selection.fake(img);
         }
         
-        var body = getBody();
+        var body = getBody(editor);
         if(!body) {
           return;
         }
@@ -244,7 +245,7 @@ CKEDITOR.plugins.add('uploadcare', {
       }
       
       function getPosition(element) {
-        var body = getBody();
+        var body = getBody(editor);
         if(!body) {
           return;
         }
