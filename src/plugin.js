@@ -135,12 +135,18 @@ CKEDITOR.plugins.add('uploadcare', {
 						}
 					}
             if(resizeElements.newWidth >= 15 && resizeElements.newHeight >= 15) {
-              resizeImg.setAttributes( {width: resizeElements.newWidth, height: resizeElements.newHeight} );
+              var imgPos = getPosition(resizeImg);
+              resizeImg.setAttributes( { 
+                width: resizeElements.newWidth, 
+                height: resizeElements.newHeight
+              });
+              resizeElements.resizeBorder.setStyle('left', imgPos.left + 'px');
+              resizeElements.resizeBorder.setStyle('top', imgPos.top + 'px');
               resizeElements.resizeBorder.setStyle('width', resizeElements.newWidth + 'px');
               resizeElements.resizeBorder.setStyle('height', resizeElements.newHeight + 'px');
               
-              resizeElements.bottomRightResizer.setStyle('left', resizeElements.imgRect.left + resizeElements.newWidth - resizerSize/2 + 'px');
-              resizeElements.bottomRightResizer.setStyle('top', resizeElements.imgRect.top + resizeElements.newHeight - resizerSize/2 + 'px');
+              resizeElements.bottomRightResizer.setStyle('left', imgPos.left + resizeElements.newWidth - resizerSize/2 + 'px');
+              resizeElements.bottomRightResizer.setStyle('top', imgPos.top + resizeElements.newHeight - resizerSize/2 + 'px');
             }
 					}
       });
