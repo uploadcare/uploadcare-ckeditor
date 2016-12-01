@@ -1,0 +1,4 @@
+node_modules/
+.vscode/
+./plugin.js
+./plugin.js.map
