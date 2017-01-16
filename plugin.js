@@ -9,9 +9,9 @@ CKEDITOR.plugins.add('uploadcare', {
 
     // Check if Uploadcare is already loaded and load it if not.
     if (typeof uploadcare === 'undefined') {
-        var version = config.widgetVersion || '2.10.2';
-        var widget_url = 'https://ucarecdn.com/widget/' + version +
-                 '/uploadcare/uploadcare.full.min.js'
+        var version = config.widgetVersion || '2.x';
+        var widget_url = 'https://ucarecdn.com/libs/widget/' + version +
+                 '/uploadcare.full.min.js'
         CKEDITOR.scriptLoader.load(widget_url);
     }
 
