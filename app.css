@@ -63,10 +63,6 @@ address, audio, blockquote, dl, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, ol
   padding: 0 0 var(--text-padding-bottom);
 }
 
-p + ul {
-  margin-top: calc(var(--text-padding-bottom) / -2);
-}
-
 a {
   transition: var(--hover-transition);
   color: var(--color-blue);
@@ -98,11 +94,22 @@ a:focus {
   outline-offset: 2px;
 }
 
-fieldset {
+code {
+  font-family: monospace;
+  font-weight: 400;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  background: var(--color-lighten);
+  color: #747d8c;
+  padding: 0 4px;
   box-sizing: border-box;
-  border: 1px solid var(--color-light-grey);
-  padding: 20px 20px 0;
-  margin-bottom: var(--text-padding-bottom);
+}
+
+pre code {
+  padding: 16px;
+  display: block;
+  white-space: pre;
+  overflow: auto;
 }
 
 h1 {
@@ -129,13 +136,12 @@ h1 {
   }
 }
 
-img {
+pre {
   max-width: 100%;
-}
-
-legend {
-  font-family: var(--font-headings);
-  color: var(--color-grey);
+  font-family: monospace;
+  white-space: pre-wrap;
+  margin: 0;
+  padding: 0 0 var(--text-padding-bottom);
 }
 
 .content {
@@ -156,9 +162,4 @@ legend {
     width: 760px;
     padding: 80px 0;
   }
-}
-
-.effects {
-  list-style: none;
-  column-count: 2;
 }
