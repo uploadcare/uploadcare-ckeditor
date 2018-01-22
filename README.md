@@ -58,4 +58,4 @@ Send any feedback or request support at hello@uploadcare.com
 [3]: http://ckeditor.com
 [5]: https://uploadcare.com/documentation/widget/
 [6]: https://uploadcare.com/documentation/javascript_api/
-[7]: https://uploadcare.com/demos/ckeditor/
+[7]: http://uploadcare.github.io/uploadcare-ckeditor/
