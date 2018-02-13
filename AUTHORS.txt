@@ -1,0 +1,11 @@
+# git log --format='%aN <%aE>' | sort -u
+
+Alan Bount <alan@zeroasterisk.com>
+Dimitry Solovyov <dimituri@gmail.com>
+Dmitry Mukhin <dm@uploadcare.com>
+Elijah <ilya@uploadcare.com>
+Gray Hound <admin@devilmaydie.name>
+Alexander Karpinsky <ak@uploadcare.com>
+LF Bittencourt <github@lfbittencourt.com>
+Valentin Golev <me@va1en0k.net>
+Zarema Khalilova <zarema@uploadcare.com>
