@@ -8,7 +8,7 @@ Minimalistic demo can be found [here][7].
 
 ## Requirements
 
-CKEditor 4.0+
+CKEditor 4.0+ (not 5.0)
 
 ## Install
 
