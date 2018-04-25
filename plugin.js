@@ -19,6 +19,17 @@ CKEDITOR.plugins.add('uploadcare', {
     if ( ! ('crop' in config)) {
       config.crop = '';
     }
+    
+    applyIntegrationSetting();
+
+    function applyIntegrationSetting() {
+      var editorVersion = CKEDITOR.version;
+      var pluginVerion = '2.1.2';
+
+      config.integration = 'CKEditor/{editorVersion}; Uploadcare-CKEditor/{pluginVerion}'
+        .replace('{editorVersion}', editorVersion)
+        .replace('{pluginVerion}', pluginVerion);
+    }
 
     function searchSelectedElement(editor, needle) {
       var sel = editor.getSelection();
