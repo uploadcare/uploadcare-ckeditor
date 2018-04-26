@@ -8,7 +8,7 @@ Minimalistic demo can be found [here][7].
 
 ## Requirements
 
-CKEditor 4.0+
+CKEditor 4.0+ (not 5.0)
 
 ## Install
 
@@ -54,8 +54,7 @@ Please follow https://uploadcare.com/dashboard/ to ensure.
 Send any feedback or request support at hello@uploadcare.com
 
 [1]: https://uploadcare.com/
-[2]: https://uploadcare.com/documentation/cdn/
-[3]: http://ckeditor.com
-[5]: https://uploadcare.com/documentation/widget/
-[6]: https://uploadcare.com/documentation/javascript_api/
-[7]: https://uploadcare.github.io/uploadcare-ckeditor/
+[3]: https://ckeditor.com/ckeditor-4/
+[5]: https://uploadcare.com/docs/uploads/widget/
+[6]: https://uploadcare.com/docs/api_reference/javascript/
+[7]: https://uploadcare.github.io/uploadcare-ckeditor/demo
