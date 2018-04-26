@@ -1,5 +1,5 @@
 // Uploadcare CKeditor plugin
-// Version: 2.1.2
+// Version: 2.2.0
 
 CKEDITOR.plugins.add('uploadcare', {
   hidpi: true,
@@ -24,7 +24,7 @@ CKEDITOR.plugins.add('uploadcare', {
 
     function applyIntegrationSetting() {
       var editorVersion = CKEDITOR.version;
-      var pluginVerion = '2.1.2';
+      var pluginVerion = '2.2.0';
 
       config.integration = 'CKEditor/{editorVersion}; Uploadcare-CKEditor/{pluginVerion}'
         .replace('{editorVersion}', editorVersion)
