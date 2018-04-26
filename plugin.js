@@ -9,7 +9,7 @@ CKEDITOR.plugins.add('uploadcare', {
 
     // Check if Uploadcare is already loaded and load it if not.
     if (typeof uploadcare === 'undefined') {
-        var version = config.widgetVersion || '3.x';
+        var version = config.widgetVersion || '2.x';
         var widget_url = 'https://ucarecdn.com/libs/widget/' + version +
                  '/uploadcare.full.min.js'
         CKEDITOR.scriptLoader.load(widget_url);
@@ -18,17 +18,6 @@ CKEDITOR.plugins.add('uploadcare', {
     // Apply default properties.
     if ( ! ('crop' in config)) {
       config.crop = '';
-    }
-    
-    applyIntegrationSetting();
-
-    function applyIntegrationSetting() {
-      var editorVersion = CKEDITOR.version;
-      var pluginVerion = '2.1.2';
-
-      config.integration = 'CKEditor/{editorVersion}; Uploadcare-CKEditor/{pluginVerion}'
-        .replace('{editorVersion}', editorVersion)
-        .replace('{pluginVerion}', pluginVerion);
     }
 
     function searchSelectedElement(editor, needle) {
