@@ -1,6 +1,6 @@
 # Uploadcare CKEditor Plugin
 
-This is a plugin for [CKEditor][3] to work with [Uploadcare][1].
+This is a plugin for [CKEditor v4][3] to work with [Uploadcare][1].
 
 ## Demo
 
@@ -8,14 +8,36 @@ Minimalistic demo can be found [here][7].
 
 ## Requirements
 
-CKEditor 4.0+
+CKEditor 4.0+ (not 5)
+
+Plugin for CKEditor v5 will be ready soon. Stay tuned.
 
 ## Install
 
-Add [plugin](http://ckeditor.com/addon/uploadcare) to CKBuilder, download or
-clone plugin from git to your plugins directory:
+### Automatic install
+Simply add [Uploadcare plugin](http://ckeditor.com/addon/uploadcare) to [CKBuilder][ck-docs-online-builder].
 
-    git clone git://github.com/uploadcare/uploadcare-ckeditor.git plugins/uploadcare
+You can find more inforamtion at [CKBuilder Documentation][ck-docs-auto-install].
+
+### Manual install
+Download latest plugin archive from [release branch][release-branch] 
+or from [releases page][releases-page].
+
+Extract the downloaded plugin into the plugins folder of your CKEditor installation.
+
+Also you can clone repository:
+
+```
+git clone -b release git@github.com:uploadcare/uploadcare-ckeditor.git plugins/uploadcare
+```
+
+Or just load it in your page:
+
+```javascript
+CKEDITOR.plugins.addExternal('uploadcare', '/absolute/path/to/uploadcare/plugin.js')
+```
+
+You can find more information about how to manually install plugins on [CKEditor Documentation][ck-docs-manual-install].
 
 ## Configure
 
@@ -54,8 +76,12 @@ Please follow https://uploadcare.com/dashboard/ to ensure.
 Send any feedback or request support at hello@uploadcare.com
 
 [1]: https://uploadcare.com/
-[2]: https://uploadcare.com/documentation/cdn/
-[3]: http://ckeditor.com
-[5]: https://uploadcare.com/documentation/widget/
-[6]: https://uploadcare.com/documentation/javascript_api/
+[3]: https://ckeditor.com/ckeditor-4/
+[5]: https://uploadcare.com/docs/uploads/widget/
+[6]: https://uploadcare.com/docs/api_reference/javascript/
 [7]: https://uploadcare.github.io/uploadcare-ckeditor/
+[releases-page]: https://github.com/uploadcare/uploadcare-ckeditor/releases
+[ck-docs-auto-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#online-builder-installation
+[ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
+[ck-docs-online-builder]: https://ckeditor.com/cke4/builder
+[release-branch]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
