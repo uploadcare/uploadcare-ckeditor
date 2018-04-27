@@ -2,54 +2,54 @@ CKEDITOR.plugins.add('uploadcare', {
   hidpi: true,
   icons: 'uploadcare',
   init: function(editor) {
-    var config = editor.config.uploadcare || {};
+    var config = editor.config.uploadcare || {}
 
     // Check if Uploadcare is already loaded and load it if not.
     if (typeof uploadcare === 'undefined') {
-      var version = config.widgetVersion || '$_WIDGET_VERSION';
-      var widgetUrl = 'https://ucarecdn.com/libs/widget/' + version + '/uploadcare.full.min.js';
+      var version = config.widgetVersion || '$_WIDGET_VERSION'
+      var widgetUrl = 'https://ucarecdn.com/libs/widget/' + version + '/uploadcare.full.min.js'
 
-      CKEDITOR.scriptLoader.load(widgetUrl);
+      CKEDITOR.scriptLoader.load(widgetUrl)
     }
 
     // Apply default properties.
     if (!('crop' in config)) {
-      config.crop = '';
+      config.crop = ''
     }
 
-    applyIntegrationSetting();
+    applyIntegrationSetting()
 
     function applyIntegrationSetting() {
-      var editorVersion = CKEDITOR.version;
-      var pluginVerion = '$_VERSION';
+      var editorVersion = CKEDITOR.version
+      var pluginVerion = '$_VERSION'
 
       config.integration = 'CKEditor/{editorVersion}; Uploadcare-CKEditor/{pluginVerion}'
         .replace('{editorVersion}', editorVersion)
-        .replace('{pluginVerion}', pluginVerion);
+        .replace('{pluginVerion}', pluginVerion)
     }
 
     function searchSelectedElement(editor, needle) {
-      var sel = editor.getSelection();
-      var element = sel.getSelectedElement();
+      var sel = editor.getSelection()
+      var element = sel.getSelectedElement()
 
       if (element && element.is(needle)) {
-        return element;
+        return element
       }
 
-      var widget;
+      var widget
 
       if (editor.widgets && (widget = editor.widgets.selected[0])) {
         if (widget.element.is(needle)) {
-          return widget.element;
+          return widget.element
         }
       }
 
-      var range = sel.getRanges()[0];
+      var range = sel.getRanges()[0]
 
       if (range) {
-        range.shrink(CKEDITOR.SHRINK_TEXT);
+        range.shrink(CKEDITOR.SHRINK_TEXT)
 
-        return editor.elementPath(range.getCommonAncestor()).contains(needle, 1);
+        return editor.elementPath(range.getCommonAncestor()).contains(needle, 1)
       }
     }
 
@@ -59,73 +59,73 @@ CKEDITOR.plugins.add('uploadcare', {
       exec: function() {
         if (typeof uploadcare == 'undefined') {
           // not loaded yet
-          return;
+          return
         }
 
         uploadcare.plugin(function(uc) {
-          var element;
-          var file;
-          var settings;
+          var element
+          var file
+          var settings
 
           if ((element = searchSelectedElement(editor, 'img'))) {
-            file = element.getAttribute('src');
+            file = element.getAttribute('src')
           }
           else if ((element = searchSelectedElement(editor, 'a'))) {
-            file = element.getAttribute('href');
+            file = element.getAttribute('href')
           }
 
           if (file && uc.utils.splitCdnUrl(file)) {
-            settings = uc.settings.build(uc.jQuery.extend({}, config, {multiple: false}));
-            file = uploadcare.fileFrom('uploaded', file, settings);
+            settings = uc.settings.build(uc.jQuery.extend({}, config, {multiple: false}))
+            file = uploadcare.fileFrom('uploaded', file, settings)
           }
           else {
-            settings = uc.settings.build(config);
-            file = null;
+            settings = uc.settings.build(config)
+            file = null
           }
 
           uploadcare.openDialog(file, settings).done(function(selected) {
-            var files = settings.multiple ? selected.files() : [selected];
+            var files = settings.multiple ? selected.files() : [selected]
 
             uc.jQuery.when.apply(null, files).done(function() {
               uc.jQuery.each(arguments, function() {
-                var imageUrl = this.cdnUrl;
+                var imageUrl = this.cdnUrl
 
                 if (this.isImage && !this.cdnUrlModifiers) {
-                  imageUrl += '-/preview/';
+                  imageUrl += '-/preview/'
                 }
                 if (element) {
-                  var widget;
+                  var widget
 
                   if (editor.widgets && (widget = editor.widgets.selected[0]) && widget.element === element) {
-                    widget.setData('src', imageUrl).setData('height', null);
+                    widget.setData('src', imageUrl).setData('height', null)
                   }
                   else if (element.getName() == 'img') {
-                    element.data('cke-saved-src', '');
-                    element.setAttribute('src', imageUrl);
+                    element.data('cke-saved-src', '')
+                    element.setAttribute('src', imageUrl)
                   }
                   else {
-                    element.data('cke-saved-href', '');
-                    element.setAttribute('href', this.cdnUrl);
+                    element.data('cke-saved-href', '')
+                    element.setAttribute('href', this.cdnUrl)
                   }
                 }
                 else if (this.isImage) {
-                  editor.insertHtml('<img src="' + imageUrl + '" alt="" /><br>', 'unfiltered_html');
+                  editor.insertHtml('<img src="' + imageUrl + '" alt="" /><br>', 'unfiltered_html')
                 }
                 else {
-                  editor.insertHtml('<a href="' + this.cdnUrl + '">' + this.name + '</a> ', 'unfiltered_html');
+                  editor.insertHtml('<a href="' + this.cdnUrl + '">' + this.name + '</a> ', 'unfiltered_html')
                 }
-              });
-            });
-          });
-        });
-      }
-    });
+              })
+            })
+          })
+        })
+      },
+    })
 
     editor.ui.addButton &&
       editor.ui.addButton('Uploadcare', {
         label: 'Uploadcare',
         toolbar: 'insert',
-        command: 'showUploadcareDialog'
-      });
-  }
-});
+        command: 'showUploadcareDialog',
+      })
+  },
+})
