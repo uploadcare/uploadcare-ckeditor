@@ -2,6 +2,8 @@
 
 This is a plugin for [CKEditor v4][3] to work with [Uploadcare][1].
 
+[![Uploadcare stack on StackShare][stack-img]][stack]
+
 ## Demo
 
 Minimalistic demo can be found [here][7].
@@ -85,3 +87,5 @@ Send any feedback or request support at hello@uploadcare.com
 [ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
 [ck-docs-online-builder]: https://ckeditor.com/cke4/builder
 [release-branch]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
+[stack-img]: http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
+[stack]: https://stackshare.io/uploadcare/stacks/
