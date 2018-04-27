@@ -1,6 +1,7 @@
 {
   "name": "uploadcare-ckeditor",
   "version": "2.1.5",
+  "widgetVersion": "3.x",
   "description": "This is a plugin for CKEditor 4 to work with Uploadcare.",
   "scripts": {
     "dev": "rollup -c -w",
