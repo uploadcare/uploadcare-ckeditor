@@ -7,7 +7,7 @@ export default {
   input: 'src/uploadcare-ckeditor4.js',
   plugins: [
     cp({
-      icons: 'dist/uploadcare/icons/',
+      'src/icons': 'dist/uploadcare/icons/',
     }),
     license({
       banner: `
