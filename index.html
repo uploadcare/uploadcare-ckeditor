@@ -1,69 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Demo of Uploadcare CKEditor Plugin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="fonts.css">
-  <link rel="stylesheet" href="app.css">
-
-  <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+  <meta charset="UTF-8">
+  <title>Upload files with Uploadcare</title>
   <script>
-    UPLOADCARE_PUBLIC_KEY = 'demopublickey'
-
-    CKEDITOR.plugins.addExternal('uploadcare', '/uploadcare-ckeditor/', 'plugin.js')
+    window.location = 'demo'
   </script>
 </head>
-
 <body>
-<div class="content">
-  <h1>Demo&nbsp;of Uploadcare CKEditor Plugin</h1>
-
-  <p>
-    <a href="https://ckeditor.com/cke4/addon/uploadcare">About plugin</a>&nbsp;&nbsp;
-    <a href="https://github.com/uploadcare/uploadcare-ckeditor">Github repo</a>&nbsp;&nbsp;
-    <a href="https://github.com/uploadcare/uploadcare-ckeditor/tree/gh-pages">Demo source</a>&nbsp;&nbsp;
-    <a href="https://github.com/uploadcare/uploadcare-ckeditor/zipball/master">Download .zip</a>&nbsp;&nbsp;
-    <a href="https://github.com/uploadcare/uploadcare-ckeditor/tarball/master">Download .tar.gz</a>
-  </p>
-
-  <textarea id="demo-editor">
-    <p>Insert an image by clicking Uploadcare logo in CKEditor toolbar.</p>
-  </textarea>
-
-  <pre><code>UPLOADCARE_PUBLIC_KEY = 'demopublickey';
-CKEDITOR.replace('demo-editor', {
-  extraPlugins: 'uploadcare',
-  toolbar: [['Uploadcare', 'Image'], ['Source', 'About']],
-  uploadcare: {multiple: true},
-});
-</code></pre>
-
-  <script>
-    CKEDITOR.replace('demo-editor', {
-      customConfig: '',
-      height: '300px',
-      extraPlugins: 'uploadcare',
-      toolbar: [['Uploadcare', 'Image'], ['Source', 'About']],
-      uploadcare: {multiple: true},
-    })
-  </script>
-
-  <p style="text-align: center">
-    Powered by <a
-    href="https://uploadcare.com/?utm_source=github&utm_campaign=uploadcare-ckeditor&utm_content=demo">Uploadcare</a>
-  </p>
-</div>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25057731-12"></script>
-<script>
-  window.dataLayer = (window.dataLayer || [])
-
-  function gtag() {dataLayer.push(arguments)}
-
-  gtag('js', new Date())
-  gtag('config', 'UA-25057731-12')
-</script>
+<a href="demo">Go to the demo</a>
 </body>
 </html>
