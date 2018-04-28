@@ -52,6 +52,19 @@ CKEDITOR.plugins.addExternal('uploadcare', '/absolute/path/to/uploadcare/plugin.
 
 You can find more information about how to manually install plugins on [CKEditor Documentation][ck-docs-manual-install].
 
+## Usage
+
+Add `uploadcare` to the list of CKEditor plugins and toolbar.
+**Set your [public key][widget-docs-options-public-key]**. 
+
+```
+CKEDITOR.replace('editor', {
+  extraPlugins: 'uploadcare',
+  toolbar: [['Uploadcare', /* Your toolbar items */]],
+  uploadcare: {publicKey: 'YOUR_PUBLIC_KEY'},
+})
+```
+
 ## Configure
 
 Initialize a CKEditor plugin with additional params:
@@ -88,6 +101,7 @@ Please follow https://uploadcare.com/dashboard/ to ensure.
 
 Send any feedback or request support at hello@uploadcare.com
 
+[widget-docs-options-public-key]: https://uploadcare.com/docs/uploads/widget/config/#option-public-key
 [1]: https://uploadcare.com/
 [3]: https://ckeditor.com/ckeditor-4/
 [5]: https://uploadcare.com/docs/uploads/widget/
