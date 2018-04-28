@@ -9,8 +9,10 @@ export default {
     cp({'src/icons': 'dist/uploadcare/icons/'}),
     license({
       banner: `
-        Uploadcare CKEditor v4 plugin
-        Version: <%= pkg.version %>
+        <%= pkg.name %> <%= pkg.version %>
+        <%= pkg.description %>
+        <%= pkg.homepage %>
+        Date: <%= moment().format('YYYY-MM-DD') %>
       `,
     }),
     jscc({values: {_WIDGET_VERSION: pkg.widgetVersion}}),
