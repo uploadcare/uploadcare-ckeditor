@@ -17,18 +17,22 @@ Minimalistic demo can be found [here][7].
 
 ## Requirements
 
-CKEditor 4.0+ (not 5)
+CKEditor 4.0+ (not 5).
 
 Plugin for CKEditor v5 will be ready soon. Stay tuned.
 
 ## Install
 
+You’re free to choose from the install methods listed below.
+
 ### Automatic install
-Simply add [Uploadcare plugin](http://ckeditor.com/addon/uploadcare) to [CKBuilder][ck-docs-online-builder].
+
+Simply add [plugin](http://ckeditor.com/addon/uploadcare) to [CKBuilder][ck-docs-online-builder].
 
 You can find more inforamtion at [CKBuilder Documentation][ck-docs-auto-install].
 
 ### Manual install
+
 Download latest plugin archive from [release branch][release-branch] 
 or from [releases page][releases-page].
 
