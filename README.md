@@ -13,13 +13,13 @@ This is a plugin for [CKEditor v4][ck-4] to work with [Uploadcare Widget][uc-fea
 
 ## Demo
 
-Minimalistic demo can be found [here][demo].
+A minimalistic demo can be found [here][demo].
 
 ## Requirements
 
 CKEditor 4.0+ (not 5).
 
-Plugin for CKEditor v5 will be ready soon. Stay tuned.
+A File Uploader for CKEditor v5 will be ready soon. Stay tuned.
 
 ## Install
 
@@ -27,14 +27,14 @@ You’re free to choose from the install methods listed below.
 
 ### Automatic install
 
-Simply add [plugin](http://ckeditor.com/addon/uploadcare) to [CKBuilder][ck-docs-online-builder].
+Simply add the [File Uploader plugin](http://ckeditor.com/addon/uploadcare) to [CKBuilder][ck-docs-online-builder].
 
-You can find more information at [CKBuilder Documentation][ck-docs-auto-install].
+You can find more information in the [CKBuilder docs][ck-docs-auto-install].
 
 ### Manual install
 
-Download latest plugin archive from [release branch][release-branch] 
-or from [releases page][releases-page].
+Download the latest plugin archive from the [release branch][release-branch]
+or [releases page][releases-page].
 
 Extract the downloaded plugin into the plugins folder of your CKEditor installation.
 
@@ -50,11 +50,11 @@ Or just load it in your page:
 CKEDITOR.plugins.addExternal('uploadcare', '/absolute/path/to/uploadcare/plugin.js')
 ```
 
-You can find more information about how to manually install plugins on [CKEditor Documentation][ck-docs-manual-install].
+You can find more info on manually installing plugins in the [CKEditor docs][ck-docs-manual-install].
 
 ## Usage
 
-Add `uploadcare` to the list of CKEditor plugins and toolbar.
+Add `uploadcare` to your list of CKEditor plugins and toolbar.
 **Set your [public key][widget-docs-options-public-key]**. 
 
 ```
@@ -83,13 +83,14 @@ CKEDITOR.replace('editor', {
 })
 ```
 
-You can heavily customize widget behavior, i.e. file sources, file validation and much more, please
-read [Uploadcare Widget][widget-docs-config] and [JavaScript API][widget-docs-js-api] documentation.
+You can deeply customize the widget behavior: file sources, file validation, and much more.
+Please, check out the [Uploadcare Widget][widget-docs-config] and [JavaScript API][widget-docs-js-api] docs.
 
 ## Feedback
 
-Send any feedback or request support at hello@uploadcare.com
+Your feedback or support requests are welcome at [hello@uploadcare.com][uc-email-hello].
 
+[uc-email-hello]: mailto:hello@uploadcare.com
 [demo]: http://uploadcare.github.io/uploadcare-ckeditor/
 [uc-feature-widget]: https://uploadcare.com/features/widget/?utm_source=github&utm_campaign=uploadcare-ckeditor
 [widget-docs-config]: https://uploadcare.com/docs/uploads/widget/config/
