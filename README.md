@@ -1,8 +1,9 @@
-# Uploadcare CKEditor Plugin
+# File Uploader by Uploadcare
 
 This is a plugin for [CKEditor v4][3] to work with [Uploadcare][1].
 
-[![Uploadcare stack on StackShare][stack-img]][stack]
+[![GitHub release][badge-release-img]][badge-release-url]&nbsp;
+[![Uploadcare stack on StackShare][badge-stack-img]][badge-stack-url]
 
 ## Demo
 
@@ -87,5 +88,7 @@ Send any feedback or request support at hello@uploadcare.com
 [ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
 [ck-docs-online-builder]: https://ckeditor.com/cke4/builder
 [release-branch]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
-[stack-img]: http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
-[stack]: https://stackshare.io/uploadcare/stacks/
+[badge-stack-img]: http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
+[badge-stack-url]: https://stackshare.io/uploadcare/stacks/
+[badge-release-img]: https://img.shields.io/github/release/uploadcare/uploadcare-ckeditor.svg
+[badge-release-url]: https://github.com/uploadcare/uploadcare-ckeditor/releases
