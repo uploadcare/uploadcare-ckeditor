@@ -65,24 +65,26 @@ CKEDITOR.replace('editor', {
 })
 ```
 
-## Configure
+## Configuration
 
-Initialize a CKEditor plugin with additional params:
+Initialize a plugin with additional options:
 
 ```javascript
-UPLOADCARE_PUBLIC_KEY = "demopublickey"; // set public key for Uploadcare
-UPLOADCARE_LOCALE = 'ru'; // set locale if you wish
-CKEDITOR.replace( 'editor1', {
-  extraPlugins: 'uploadcare', // this will enable plugin
-  toolbar: [
-    // add Uploadcare button to toolbar, e.g.:
-    ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', '-', 'Uploadcare']
-  ]
-});
+UPLOADCARE_LOCALE = 'ru' // set locale if you wish
+
+CKEDITOR.replace('editor', {
+  extraPlugins: 'uploadcare',
+  toolbar: [['Uploadcare', /* Your toolbar items */]],
+  uploadcare: {
+    publicKey: 'YOUR_PUBLIC_KEY',
+    multiple: true,
+    crop: '1:1,4:3',
+  },
+})
 ```
 
 You can heavily customize widget behavior, i.e. file sources, file validation and much more, please
-read Uploadcare [widget][5] and [javascript API][6] documentation.
+read [Uploadcare Widget][widget-docs-config] and [javascript API][widget-docs-js-api] documentation.
 
 ## File Autostore
 
@@ -101,6 +103,8 @@ Please follow https://uploadcare.com/dashboard/ to ensure.
 
 Send any feedback or request support at hello@uploadcare.com
 
+[widget-docs-config]: https://uploadcare.com/docs/uploads/widget/config/
+[widget-docs-js-api]: https://uploadcare.com/docs/api_reference/javascript/
 [widget-docs-options-public-key]: https://uploadcare.com/docs/uploads/widget/config/#option-public-key
 [1]: https://uploadcare.com/
 [3]: https://ckeditor.com/ckeditor-4/
