@@ -1,6 +1,12 @@
 # File Uploader by Uploadcare
 
-This is a plugin for [CKEditor v4][3] to work with [Uploadcare][1].
+<a href="https://uploadcare.com/?utm_source=github&utm_campaign=uploadcare-ckeditor">
+    <img align="right" width="64" height="64"
+         src="https://ucarecdn.com/2f4864b7-ed0e-4411-965b-8148623aa680/uploadcare-logo-mark.svg"
+         alt="">
+</a>
+
+This is a plugin for [CKEditor v4][3] to work with [Uploadcare Widget](https://uploadcare.com/features/widget/?utm_source=github&utm_campaign=uploadcare-ckeditor).
 
 [![GitHub release][badge-release-img]][badge-release-url]&nbsp;
 [![Uploadcare stack on StackShare][badge-stack-img]][badge-stack-url]
