@@ -129,13 +129,6 @@ h1 {
   }
 }
 
-@media (min-width: 1280px) {
-  h1 {
-    font-size: 62px;
-    line-height: 64px;
-  }
-}
-
 pre {
   max-width: 100%;
   font-family: monospace;

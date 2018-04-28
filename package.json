@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "precommit": "npm run lint",
     "serve": "serve",
+    "start": "browser-sync start -s ./ -f ./ --port 3000",
     "deploy:demo": "node scripts/deploy-demo.js",
     "deploy:release": "node scripts/deploy-release.js",
     "build": "npm run clean && rollup -c && npm run assets",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/uploadcare/uploadcare-ckeditor#readme",
   "devDependencies": {
+    "browser-sync": "^2.23.7",
     "eslint": "^4.19.1",
     "eslint-config-uploadcare": "^1.1.0",
     "gh-pages": "^1.1.0",
