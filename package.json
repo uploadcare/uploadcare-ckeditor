@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "rollup -c -w",
-    "lint": "eslint src/",
+    "lint": "eslint .",
     "precommit": "npm run lint",
     "serve": "serve",
     "deploy:demo": "node scripts/deploy-demo.js",
