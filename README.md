@@ -27,7 +27,7 @@ You’re free to choose from the install methods listed below.
 
 ### Automatic install
 
-Simply add the [File Uploader plugin](http://ckeditor.com/addon/uploadcare) to [CKBuilder][ck-docs-online-builder].
+Simply add the [File Uploader plugin][ck-uc-plugin] to [CKBuilder][ck-docs-online-builder].
 
 You can find more information in the [CKBuilder docs][ck-docs-auto-install].
 
@@ -99,6 +99,7 @@ Your feedback or support requests are welcome at [hello@uploadcare.com][uc-email
 [releases-page]: https://github.com/uploadcare/uploadcare-ckeditor/releases
 [release-branch]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
 [ck-4]: https://ckeditor.com/ckeditor-4/
+[ck-uc-plugin]: http://ckeditor.com/addon/uploadcare
 [ck-docs-auto-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#online-builder-installation
 [ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
 [ck-docs-online-builder]: https://ckeditor.com/cke4/builder
