@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/uploadcare/uploadcare-ckeditor#readme",
   "devDependencies": {
-    "browser-sync": "^2.23.7",
+    "browser-sync": "^2.24.1",
     "eslint": "^4.19.1",
     "eslint-config-uploadcare": "^1.1.0",
     "gh-pages": "^1.1.0",
