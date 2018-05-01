@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Updated
 
-* The default version of the widget is `3.x` now.
-* Added `integration` to default config to set info
-  about the CKeditor version and the plugin version
-  for User Agent with requests to Uploadcare Upload API.
+* The default version of the widget is now `3.x`.
+* Added `integration` to the default config to provide info
+  on the CKEditor version and plugin version for User Agent with requests
+  to [Uploadcare Upload API]((https://uploadcare.com/docs/api_reference/upload/).
