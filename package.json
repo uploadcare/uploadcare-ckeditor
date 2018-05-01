@@ -14,7 +14,7 @@
     "deploy:release": "node scripts/deploy-release.js",
     "build": "npm run clean && rollup -c && npm run assets",
     "release": "release-it",
-    "assets": "cd dist && find . -type d -maxdepth 1 -mindepth 1 -exec zip -D -r {}.zip {} \\; -exec tar -czvf {}.tar.gz {} \\;"
+    "assets": "node scripts/archive-dist.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "homepage": "https://github.com/uploadcare/uploadcare-ckeditor#readme",
   "devDependencies": {
     "browser-sync": "^2.24.1",
+    "archiver": "^2.1.1",
     "eslint": "^4.19.1",
     "eslint-config-uploadcare": "^1.1.0",
     "gh-pages": "^1.1.0",
