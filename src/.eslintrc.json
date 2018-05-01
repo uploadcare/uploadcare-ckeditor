@@ -1,9 +1,7 @@
 {
-  "extends": ["uploadcare", "plugin:es5/no-es2015"],
-  "plugins": ["es5"],
-  "rules": {
-    "require-jsdoc": "off",
-    "max-statements": "off",
-    "max-nested-callbacks": "off"
+  "env": {"browser": true},
+  "parserOptions": {
+    "ecmaVersion": 5,
+    "sourceType": "script"
   }
 }
