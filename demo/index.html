@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Demo of File Uploader by Uploadcare, CKEditor Plugin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="app.css">
+
+  <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+  <script>
+    CKEDITOR.plugins.addExternal('uploadcare', window.location.pathname + '../dist/uploadcare/', 'plugin.js')
+  </script>
+</head>
+
+<body>
+<div class="content">
+  <h1>Demo&nbsp;of File Uploader by Uploadcare, CKEditor plugin</h1>
+
+  <p>
+    <a href="https://ckeditor.com/cke4/addon/uploadcare">About plugin</a>&nbsp;&nbsp;
+    <a href="https://github.com/uploadcare/uploadcare-ckeditor">Github repo</a>&nbsp;&nbsp;
+    <a href="https://github.com/uploadcare/uploadcare-ckeditor/releases">Releases</a>
+  </p>
+
+  <h2>Demo</h2>
+
+  <p>
+    <textarea id="demo-editor">
+    <p>Insert an image by clicking Uploadcare logo in CKEditor toolbar.</p>
+    </textarea>
+  </p>
+
+  <h2>Code</h2>
+
+  <pre><code>CKEDITOR.replace('demo-editor', {
+  extraPlugins: 'uploadcare',
+  toolbar: [['Uploadcare', 'Image'], ['Source']],
+  uploadcare: {publicKey: 'demopublickey'},
+});
+</code></pre>
+
+  <script>
+    CKEDITOR.replace('demo-editor', {
+      customConfig: '',
+      height: '300px',
+      extraPlugins: 'uploadcare',
+      toolbar: [['Uploadcare', 'Image'], ['Source']],
+      uploadcare: {publicKey: 'demopublickey'},
+    })
+  </script>
+
+  <p style="text-align: center">
+    Powered by <a
+    href="https://uploadcare.com/?utm_source=github&utm_campaign=uploadcare-ckeditor&utm_content=demo">Uploadcare</a>
+  </p>
+</div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25057731-12"></script>
+<script>
+  window.dataLayer = (window.dataLayer || [])
+
+  function gtag() {dataLayer.push(arguments)}
+
+  gtag('js', new Date())
+  gtag('config', 'UA-25057731-12')
+</script>
+</body>
+</html>
