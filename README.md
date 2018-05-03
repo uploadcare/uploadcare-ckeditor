@@ -91,7 +91,7 @@ Please, check out the [Uploadcare Widget][widget-docs-config] and [JavaScript AP
 Your feedback or support requests are welcome at [hello@uploadcare.com][uc-email-hello].
 
 [uc-email-hello]: mailto:hello@uploadcare.com
-[demo]: http://uploadcare.github.io/uploadcare-ckeditor/
+[demo]: https://uploadcare.github.io/uploadcare-ckeditor/
 [uc-feature-widget]: https://uploadcare.com/features/widget/?utm_source=github&utm_campaign=uploadcare-ckeditor
 [widget-docs-config]: https://uploadcare.com/docs/uploads/widget/config/
 [widget-docs-js-api]: https://uploadcare.com/docs/api_reference/javascript/
@@ -99,11 +99,11 @@ Your feedback or support requests are welcome at [hello@uploadcare.com][uc-email
 [releases-page]: https://github.com/uploadcare/uploadcare-ckeditor/releases
 [release-branch]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
 [ck-4]: https://ckeditor.com/ckeditor-4/
-[ck-uc-plugin]: http://ckeditor.com/addon/uploadcare
+[ck-uc-plugin]: https://ckeditor.com/addon/uploadcare
 [ck-docs-auto-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#online-builder-installation
 [ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
 [ck-docs-online-builder]: https://ckeditor.com/cke4/builder
-[badge-stack-img]: http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
+[badge-stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
 [badge-stack-url]: https://stackshare.io/uploadcare/stacks/
 [badge-release-img]: https://img.shields.io/github/release/uploadcare/uploadcare-ckeditor.svg
 [badge-release-url]: https://github.com/uploadcare/uploadcare-ckeditor/releases
