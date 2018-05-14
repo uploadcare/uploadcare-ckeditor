@@ -9,7 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Updated
 
-* The default version of the widget is now `3.x`.
+* [CKEditor 4][ext-ckeditor-4] is now fully supported.
+* The default version of the widget for
+  [File Uploader][ext-ckeditor-uploader] is now
+  [`3.x`][widget-configure-3x].
 * Added `integration` to the default config to provide info
   on the CKEditor version and plugin version for User Agent with requests
   to [Uploadcare Upload API](https://uploadcare.com/docs/api_reference/upload/).
+
+[ext-ckeditor-4]: https://ckeditor.com/ckeditor-4/
+[ext-ckeditor-uploader]: https://ckeditor.com/cke4/addon/uploadcare
+[widget-configure-3x]: https://uploadcare.com/widget/configure/3.x/
