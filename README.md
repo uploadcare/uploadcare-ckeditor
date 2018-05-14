@@ -15,37 +15,37 @@ with [Uploadcare Widget][uc-feature-widget].
 * [Demo](#demo)
 * [Requirements](#requirements)
 * [Install](#install)
-  * [Automatic](#install-auto)
-  * [Manual](#install-manual)
+  * [Automatic](#automatic-install)
+  * [Manual](#manual-install)
 * [Usage](#usage)
-* [Configuration](#config)
-  * [Plugin config](#config-plugin)
-  * [Widget config](#config-widget)
+* [Configuration](#configuration)
+  * [Plugin config](#plugin-configuration)
+  * [Widget config](#widget-configuration)
 * [Feedback](#feedback)
 
-## <a id="demo" href="#demo"></a> Demo
+## Demo
 
 Check out the basic demo [here][demo].
 
-## <a id="requirements" href="#requirements"></a> Requirements
+## Requirements
 
 CKEditor 4.0+ (not 5).
 
 File Uploader for CKEditor v5 is on its way. Stay tuned.
 
-## <a id="install" href="#install"></a> Install
+## Install
 
 You can go with either [automatic](#install-auto) or [manual](install-manual)
 install.
 
-### <a id="install-auto" href="#install-auto"></a> Automatic install
+### Automatic install
 
 Just add the [File Uploader][ck-uc-plugin] plugin to your
 [CKBuilder][ck-docs-online-builder].
 
 You can find more info in the [CKBuilder docs][ck-docs-auto-install].
 
-### <a id="install-manual" href="#install-manual"></a> Manual install
+### Manual install
 
 Download the latest plugin archive from the [release branch][release-branch]
 or [releases page][releases-page].
@@ -67,7 +67,7 @@ CKEDITOR.plugins.addExternal('uploadcare', '/absolute/path/to/uploadcare/plugin.
 
 You can find more info on manually installing plugins in the [CKEditor docs][ck-docs-manual-install].
 
-## <a id="usage" href="#usage"></a> Usage
+## Usage
 
 Add `uploadcare` to the list of your CKEditor plugins and the toolbar.
 **Set your [public key][widget-docs-options-public-key]**. Public keys are used
@@ -81,9 +81,9 @@ CKEDITOR.replace('editor', {
 })
 ```
 
-## <a id="config" href="#config"></a> Configuration
+## Configuration
 
-### <a id="config-plugin" href="#config-plugin"></a> Plugin configuration
+### Plugin configuration
 
 To apply a custom configuration, initialize the plugin providing additional
 options:
@@ -93,16 +93,17 @@ UPLOADCARE_LOCALE = 'ru' // set a preferred locale if needed
 
 CKEDITOR.replace('editor', {
   extraPlugins: 'uploadcare',
-  toolbar: [['Uploadcare', /* Your toolbar items */]],
+  toolbar: [['Uploadcare', /* your toolbar items */]],
   uploadcare: {
     publicKey: 'YOUR_PUBLIC_KEY', // set your public API key here
     multiple: true, // allow multi-file uploads
     crop: '1:1,4:3', // set crop options when handling images
+    /* feel free to add more “object key” options here*/
   },
 })
 ```
 
-### <a id="config-widget" href="#config-widget"></a> Widget configuration
+### Widget configuration
 
 Uploadcare Widget can be deeply customized to suit your UX/UI. You can define
 allowed upload sources, implement file validation, and more.
@@ -111,7 +112,7 @@ Use our live [widget sandbox][widget-configure] as a starting point and consider
 checking out the docs on [widget configuration][widget-docs-config] and its
 [JavaScript API][widget-docs-js-api].
 
-## <a id="feedback" href="#feedback"></a> Feedback
+## Feedback
 
 Issues and PRs are welcome. You can provide your feedback or drop us a support
 request at [hello@uploadcare.com][uc-email-hello].
