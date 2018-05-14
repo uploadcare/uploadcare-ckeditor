@@ -21,6 +21,8 @@ with [Uploadcare Widget][uc-feature-widget].
 * [Configuration](#configuration)
   * [Plugin config](#plugin-configuration)
   * [Widget config](#widget-configuration)
+* [Contributors](#contributors)
+* [Security issues](#security-issues)
 * [Feedback](#feedback)
 
 ## Demo
@@ -112,6 +114,25 @@ Use our live [widget sandbox][widget-configure] as a starting point and consider
 checking out the docs on [widget configuration][widget-docs-config] and its
 [JavaScript API][widget-docs-js-api].
 
+## Contributors
+
+* [grayhound](https://github.com/grayhound)
+* [Zmoki](https://github.com/Zmoki)
+* [@dmitry-mukhin](https://github.com/dmitry-mukhin)
+* [nd0ut](https://github.com/nd0ut)
+* [homm](https://github.com/homm)
+* [disolovyov](https://github.com/disolovyov)
+* [zeroasterisk](https://github.com/zeroasterisk)
+
+## Security issues
+
+If you think you ran into something in Uploadcare libraries which might have
+security implications, please hit us up at [bugbounty@uploadcare.com][bounty]
+or Hackerone.
+
+We'll contact you personally in a short time to fix an issue through co-op and
+prior to any public disclosure.
+
 ## Feedback
 
 Issues and PRs are welcome. You can provide your feedback or drop us a support
@@ -135,3 +156,4 @@ request at [hello@uploadcare.com][uc-email-hello].
 [badge-stack-url]: https://stackshare.io/uploadcare/stacks/
 [badge-release-img]: https://img.shields.io/github/release/uploadcare/uploadcare-ckeditor.svg
 [badge-release-url]: https://github.com/uploadcare/uploadcare-ckeditor/releases
+[bounty]: mailto:bugbounty@uploadcare.com
