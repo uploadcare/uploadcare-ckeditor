@@ -21,7 +21,6 @@ with [Uploadcare Widget][uc-feature-widget].
 * [Configuration](#configuration)
   * [Plugin config](#plugin-configuration)
   * [Widget config](#widget-configuration)
-* [Contributors](#contributors)
 * [Security issues](#security-issues)
 * [Feedback](#feedback)
 
