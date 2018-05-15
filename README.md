@@ -27,7 +27,7 @@ with [Uploadcare Widget][uc-feature-widget].
 
 ## Demo
 
-Check out the basic demo [here][demo].
+Check out the basic demo [here][ck-demo].
 
 ## Requirements
 
@@ -49,8 +49,8 @@ You can find more info in the [CKBuilder docs][ck-docs-auto-install].
 
 ### Manual install
 
-Download the latest plugin archive from the [release branch][release-branch]
-or [releases page][releases-page].
+Download the latest plugin archive from the
+[release branch][github-release-branch] or [releases page][github-release-page].
 
 Extract the downloaded archive to the plugin directory of your CKEditor
 installation.
@@ -67,13 +67,15 @@ Or directly loading it in your page:
 CKEDITOR.plugins.addExternal('uploadcare', '/absolute/path/to/uploadcare/plugin.js')
 ```
 
-You can find more info on manually installing plugins in the [CKEditor docs][ck-docs-manual-install].
+You can find more info on manually installing plugins in the
+[CKEditor docs][ck-docs-manual-install].
 
 ## Usage
 
 Add `uploadcare` to the list of your CKEditor plugins and the toolbar.
-**Set your [public key][widget-docs-options-public-key]**. Public keys are used
-to identify a target Uploadcare [project][uc-projects] your uploads will go to.
+**Set your [public key][uc-widget-docs-option-public-key]**. Public keys are
+used to identify a target Uploadcare [project][uc-projects] your uploads will
+go to.
 
 ```
 CKEDITOR.replace('editor', {
@@ -110,18 +112,9 @@ CKEDITOR.replace('editor', {
 Uploadcare Widget can be deeply customized to suit your UX/UI. You can define
 allowed upload sources, implement file validation, and more.
 
-Use our live [widget sandbox][widget-configure] as a starting point and consider
-checking out the docs on [widget configuration][widget-docs-config] and its
-[JavaScript API][widget-docs-js-api].
-
-## Contributors
-
-Below are the top-3 folks based on the total number of contributions to the
-project. See the full list of contributors [here][github-contributors].
-
-* [grayhound](https://github.com/grayhound)
-* [Zmoki](https://github.com/Zmoki)
-* [@dmitry-mukhin](https://github.com/dmitry-mukhin)
+Use our live [widget sandbox][uc-widget-configure] as a starting point and consider
+checking out the docs on [widget configuration][uc-widget-docs-config] and its
+[JavaScript API][uc-widget-docs-js-api].
 
 ## Security issues
 
@@ -137,23 +130,24 @@ prior to any public disclosure.
 Issues and PRs are welcome. You can provide your feedback or drop us a support
 request at [hello@uploadcare.com][uc-email-hello].
 
-[uc-email-hello]: mailto:hello@uploadcare.com
-[demo]: https://uploadcare.github.io/uploadcare-ckeditor/
-[uc-feature-widget]: https://uploadcare.com/features/widget/?utm_source=github&utm_campaign=uploadcare-ckeditor
-[widget-docs-config]: https://uploadcare.com/docs/uploads/widget/config/
-[widget-docs-js-api]: https://uploadcare.com/docs/api_reference/javascript/
-[widget-docs-options-public-key]: https://uploadcare.com/docs/uploads/widget/config/#option-public-key
-[uc-projects]: https://uploadcare.com/docs/keys/#projects
-[releases-page]: https://github.com/uploadcare/uploadcare-ckeditor/releases
-[release-branch]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
-[ck-4]: https://ckeditor.com/ckeditor-4/
 [ck-uc-plugin]: https://ckeditor.com/addon/uploadcare
-[ck-docs-auto-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#online-builder-installation
-[ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
-[ck-docs-online-builder]: https://ckeditor.com/cke4/builder
-[badge-stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
-[badge-stack-url]: https://stackshare.io/uploadcare/stacks/
+[ck-4]: https://ckeditor.com/ckeditor-4/
+[uc-feature-widget]: https://uploadcare.com/features/widget/?utm_source=github&utm_campaign=uploadcare-ckeditor
 [badge-release-img]: https://img.shields.io/github/release/uploadcare/uploadcare-ckeditor.svg
 [badge-release-url]: https://github.com/uploadcare/uploadcare-ckeditor/releases
+[badge-stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
+[badge-stack-url]: https://stackshare.io/uploadcare/stacks/
+[ck-demo]: https://uploadcare.github.io/uploadcare-ckeditor/
+[ck-docs-online-builder]: https://ckeditor.com/cke4/builder
+[ck-docs-auto-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#online-builder-installation
+[github-release-page]: https://github.com/uploadcare/uploadcare-ckeditor/releases
+[github-release-branch]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
+[ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
+[uc-widget-docs-option-public-key]: https://uploadcare.com/docs/uploads/widget/config/#option-public-key/?utm_source=github&utm_campaign=uploadcare-ckeditor
+[uc-projects]: https://uploadcare.com/docs/keys/#projects/?utm_source=github&utm_campaign=uploadcare-ckeditor
+[uc-widget-configure]: https://uploadcare.com/widget/configure/3.x/?utm_source=github&utm_campaign=uploadcare-ckeditor
+[uc-widget-docs-config]: https://uploadcare.com/docs/uploads/widget/config/?utm_source=github&utm_campaign=uploadcare-ckeditor
+[uc-widget-docs-js-api]: https://uploadcare.com/docs/api_reference/javascript/?utm_source=github&utm_campaign=uploadcare-ckeditor
 [github-contributors]: https://github.com/uploadcare/uploadcare-ckeditor/graphs/contributors
 [uc-email-bounty]: mailto:bugbounty@uploadcare.com
+[uc-email-hello]: mailto:hello@uploadcare.com
