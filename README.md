@@ -100,7 +100,7 @@ CKEDITOR.replace('editor', {
     publicKey: 'YOUR_PUBLIC_KEY', // set your public API key here
     multiple: true, // allow multi-file uploads
     crop: '1:1,4:3', // set crop options when handling images
-    /* feel free to add more “object key” options here*/
+    /* feel free to add more “object key” options here */
   },
 })
 ```
@@ -116,18 +116,17 @@ checking out the docs on [widget configuration][widget-docs-config] and its
 
 ## Contributors
 
+Below are the top-3 folks based on the total number of contributions to the
+project. See the full list of contributors [here][github-contributors].
+
 * [grayhound](https://github.com/grayhound)
 * [Zmoki](https://github.com/Zmoki)
 * [@dmitry-mukhin](https://github.com/dmitry-mukhin)
-* [nd0ut](https://github.com/nd0ut)
-* [homm](https://github.com/homm)
-* [disolovyov](https://github.com/disolovyov)
-* [zeroasterisk](https://github.com/zeroasterisk)
 
 ## Security issues
 
 If you think you ran into something in Uploadcare libraries which might have
-security implications, please hit us up at [bugbounty@uploadcare.com][bounty]
+security implications, please hit us up at [bugbounty@uploadcare.com][uc-email-bounty]
 or Hackerone.
 
 We'll contact you personally in a short time to fix an issue through co-op and
@@ -156,4 +155,5 @@ request at [hello@uploadcare.com][uc-email-hello].
 [badge-stack-url]: https://stackshare.io/uploadcare/stacks/
 [badge-release-img]: https://img.shields.io/github/release/uploadcare/uploadcare-ckeditor.svg
 [badge-release-url]: https://github.com/uploadcare/uploadcare-ckeditor/releases
-[bounty]: mailto:bugbounty@uploadcare.com
+[github-contributors]: https://github.com/uploadcare/uploadcare-ckeditor/graphs/contributors
+[uc-email-bounty]: mailto:bugbounty@uploadcare.com
