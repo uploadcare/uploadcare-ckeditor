@@ -36,8 +36,8 @@ File Uploader for CKEditor v5 is on its way. Stay tuned.
 
 ## Install
 
-You can go with either [automatic](#install-auto) or [manual](install-manual)
-install.
+You can go with either [automatic](#automatic-install) or
+[manual](#manual-install) install.
 
 ### Automatic install
 
@@ -142,8 +142,8 @@ request at [hello@uploadcare.com][uc-email-hello].
 [github-releases]: https://github.com/uploadcare/uploadcare-ckeditor/releases
 [github-branch-release]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
 [ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
-[uc-widget-docs-option-public-key]: https://uploadcare.com/docs/uploads/widget/config/#option-public-key/?utm_source=github&utm_campaign=uploadcare-ckeditor
-[uc-projects]: https://uploadcare.com/docs/keys/#projects/?utm_source=github&utm_campaign=uploadcare-ckeditor
+[uc-widget-docs-option-public-key]: https://uploadcare.com/docs/uploads/widget/config/?utm_source=github&utm_campaign=uploadcare-ckeditor#option-public-key
+[uc-projects]: https://uploadcare.com/docs/keys/?utm_source=github&utm_campaign=uploadcare-ckeditor#projects
 [uc-widget-configure]: https://uploadcare.com/widget/configure/3.x/?utm_source=github&utm_campaign=uploadcare-ckeditor
 [uc-widget-docs-config]: https://uploadcare.com/docs/uploads/widget/config/?utm_source=github&utm_campaign=uploadcare-ckeditor
 [uc-widget-docs-js-api]: https://uploadcare.com/docs/api_reference/javascript/?utm_source=github&utm_campaign=uploadcare-ckeditor
