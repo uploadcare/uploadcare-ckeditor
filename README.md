@@ -26,7 +26,7 @@ with [Uploadcare Widget][uc-feature-widget].
 
 ## Demo
 
-Check out the basic demo [here][ck-demo].
+Check out the basic demo [here][demo].
 
 ## Requirements
 
@@ -49,7 +49,7 @@ You can find more info in the [CKBuilder docs][ck-docs-auto-install].
 ### Manual install
 
 Download the latest plugin archive from the
-[release branch][github-release-branch] or [releases page][github-release-page].
+[release branch][github-branch-release] or [releases page][github-releases].
 
 Extract the downloaded archive to the plugin directory of your CKEditor
 installation.
@@ -136,11 +136,11 @@ request at [hello@uploadcare.com][uc-email-hello].
 [badge-release-url]: https://github.com/uploadcare/uploadcare-ckeditor/releases
 [badge-stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
 [badge-stack-url]: https://stackshare.io/uploadcare/stacks/
-[ck-demo]: https://uploadcare.github.io/uploadcare-ckeditor/
+[demo]: https://uploadcare.github.io/uploadcare-ckeditor/
 [ck-docs-online-builder]: https://ckeditor.com/cke4/builder
 [ck-docs-auto-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#online-builder-installation
-[github-release-page]: https://github.com/uploadcare/uploadcare-ckeditor/releases
-[github-release-branch]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
+[github-releases]: https://github.com/uploadcare/uploadcare-ckeditor/releases
+[github-branch-release]: https://github.com/uploadcare/uploadcare-ckeditor/tree/release
 [ck-docs-manual-install]: https://docs.ckeditor.com/ckeditor4/latest/guide/dev_plugins.html#manual-installation
 [uc-widget-docs-option-public-key]: https://uploadcare.com/docs/uploads/widget/config/#option-public-key/?utm_source=github&utm_campaign=uploadcare-ckeditor
 [uc-projects]: https://uploadcare.com/docs/keys/#projects/?utm_source=github&utm_campaign=uploadcare-ckeditor
